@@ -55,6 +55,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ViewModel\Base\RelayCommand.cs" />
+    <Compile Include="ViewModel\Base\ViewModelBase.cs" />
+    <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\PanelViewModel.cs" />
     <Page Include="CodeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -76,10 +80,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\TreeModel\LaTeX\LaTeXObject.cs" />
-    <Compile Include="Model\TreeModel\Base\MathLanguage.cs" />
-    <Compile Include="Model\TreeModel\Base\MathObject.cs" />
-    <Compile Include="Model\TreeModel\MathML\MathMLObject.cs" />
+    <Compile Include="Model\LaTeX\LaTeXObject.cs" />
+    <Compile Include="Model\Base\MathObject.cs" />
+    <Compile Include="Model\MathML\MathMLObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -105,6 +108,8 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Model\DocX\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

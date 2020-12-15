@@ -15,16 +15,23 @@
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="100"/>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-        <ComboBox x:Name="LanguagePick" Grid.Column="0" HorizontalAlignment="Stretch" Margin="8,8,8,8" ItemsSource="{Binding ElementName=Root, Path=DebugList}"/>
-        <Button Grid.Column="1" Content="Code Display" Margin="8,8,8,8"/>
-        <Button Grid.Column="2" Content="Graphic Display" Margin="8,8,8,8"/>
+            <ComboBox x:Name="LanguagePick" Grid.Column="0" HorizontalAlignment="Stretch" Margin="8,8,8,8" 
+                ItemsSource="{Binding ElementName=Root, Path=LanguageList}" 
+                SelectedValue="{Binding ElementName=Root, Path=SelectedLanguage}"/>
+            <Button Grid.Column="1" Content="Code" Margin="8,8,8,8"/>
+            <Button Grid.Column="2" Content="Draw" Margin="8,8,8,8"/>
         </Grid>
 
-        <TextBlock Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="8,8,8,8" FontSize="16"/>
-
+        <TextBox Text="{Binding ElementName=Root, Path=CodeText, Mode=TwoWay}"
+                 Grid.Row="1"
+                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="8,8,8,8"
+                 FontSize="16"
+                 Focusable="True"
+                 TextWrapping="Wrap"
+            />
     </Grid>
 </UserControl>

@@ -24,11 +24,28 @@ namespace IO_Mat_tlumacz
         {
             InitializeComponent();
 
-            debugList = new List<string>(  new string[] { "LaTeX", "MathML", "DocX" }  );
-            LanguagePick.ItemsSource = DebugList;
         }
+        public string[] LanguageList
+        {
+            get { return (string[])GetValue(LanguageListDP); }
+            set { SetValue(LanguageListDP, value); }
+        }
+        public static DependencyProperty LanguageListDP = DependencyProperty.Register
+            ("LanguageList", typeof(string[]), typeof(CodeView), new PropertyMetadata());
+        public string SelectedLanguage
+        {
+            get { return (string)GetValue(SelectedLanguageDP); }
+            set { SetValue(SelectedLanguageDP, value); }
+        }
+        public static DependencyProperty SelectedLanguageDP = DependencyProperty.Register
+            ("SelectedLanguage", typeof(string), typeof(CodeView), new PropertyMetadata());
+        public string CodeText
+        {
+            get { return (string)GetValue(CodeTextDP); }
+            set { SetValue(CodeTextDP, value); }
+        }
+        public static DependencyProperty CodeTextDP = DependencyProperty.Register
+            ("CodeText", typeof(string[]), typeof(CodeView), new PropertyMetadata());
 
-        private List<string> debugList;
-        public List<string> DebugList => debugList;
     }
 }

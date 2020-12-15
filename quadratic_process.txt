@@ -1,0 +1,88 @@
+	x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
+   |--------- Parsed text ----------|  |---- Stack -----------------------|                    |--- Final model -----------------------------------------------------------------------------------------------------|
+										{ }														[]
+	x=									{ Text }												[Text["x="]]
+	  \frac{							{ FractionL, FractionM }								[Text["x="],Fraction[ [],[] ]]
+			-b							{ Text, FractionL, FractionM }							[Text["x="],Fraction[ [Text["-b"]],[] ]]
+			  \pm						{ PlusMinus, FractionL, FractionM }						[Text["x="],Fraction[ [Text["-b"],PlusMinus[]],[] ]]
+				 \sqrt{					{ SquareRoot, FractionL, FractionM }					[Text["x="],Fraction[ [Text["-b"],PlusMinus[],SquareRoot[]],[] ]]
+					   b				{ Text, SquareRoot, FractionL, FractionM }				[Text["x="],Fraction[ [Text["-b"],PlusMinus[],SquareRoot[Text["b"]]],[] ]]
+						^				{ TopIndex, SquareRoot, FractionL, FractionM }			[Text["x="],Fraction[ [Text["-b"],PlusMinus[],SquareRoot[Text["b"],TopIndex[]]],[] ]]
+						 2				{ Text, TopIndex, SquareRoot, FractionL, FractionM }	[Text["x="],Fraction[ [Text["-b"],PlusMinus[],SquareRoot[Text["b"],TopIndex[Text["2"]]]],[] ]]
+						  -4ac			{ Text, SquareRoot, FractionL, FractionM }				[Text["x="],Fraction[ [Text["-b"],PlusMinus[],SquareRoot[Text["b"],TopIndex[Text["2"]],Text["-4ac"]]],[] ]]
+							  }			{ SquareRoot, FractionL, FractionM }					[Text["x="],Fraction[ [Text["-b"],PlusMinus[],SquareRoot[Text["b"],TopIndex[Text["2"]],Text["-4ac"]]],[] ]]
+							   }		{ FractionL, FractionM }								[Text["x="],Fraction[ [Text["-b"],PlusMinus[],SquareRoot[Text["b"],TopIndex[Text["2"]],Text["-4ac"]]],[] ]]
+								{		{ FractionM }											[Text["x="],Fraction[ [Text["-b"],PlusMinus[],SquareRoot[Text["b"],TopIndex[Text["2"]],Text["-4ac"]]],[] ]]
+								 2a		{ Text, FractionM }										[Text["x="],Fraction[ [Text["-b"],PlusMinus[],SquareRoot[Text["b"],TopIndex[Text["2"]],Text["-4ac"]]],[Text["2a"]] ]]
+								   }	{ FractionM }											[Text["x="],Fraction[ [Text["-b"],PlusMinus[],SquareRoot[Text["b"],TopIndex[Text["2"]],Text["-4ac"]]],[Text["2a"]] ]]
+
+			Tree view
+
+[Text["x="],Fraction[ [Text["-b"],PlusMinus[],SquareRoot[Text["b"],TopIndex[Text["2"]],Text["-4ac"]]],[Text["2a"]] ]]
+[	
+	Text[
+		"x="
+	],
+	Fraction[
+		[
+			Text[
+				"-b"
+			],
+			PlusMinus[
+			],
+			SquareRoot[
+				Text[
+					"b"
+				],
+				TopIndex[
+					Text[
+						"2"
+					]
+				],
+				Text[
+					"-4ac"
+				]
+			]
+		],
+		[
+			Text[
+				"2a"
+			]
+		]
+	]
+]
+
+
+
+
+	x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
+   |--------- Parsed text ----------|  |---- Stack -----------------------|                    |--- Final model -----------------------------------------------------------------------------------------------------|
+	x		[]		[]
+	 =		[Equals]		[Text[x]]
+	  \frac		[Equals]		[Text[x]]
+
+
+	x=(-b\pm\sqrt(b^2-4ac))/(2a)
+   |--------- Parsed text ----------|  |---- Stack -----------------------|                    |--- Final model -----------------------------------------------------------------------------------------------------|
+				[]		[]
+	x			[]		[]
+	 =			[Equals]		[Text[x]]
+	  (			[EndBracket,Equals]		[Text[x]]
+	   -			[Minus,EndBracket,Equals]		[Text[x]]
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+

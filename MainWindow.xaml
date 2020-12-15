@@ -3,10 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:IO_Mat_tlumacz"
+        xmlns:view="clr-namespace:IO_Mat_tlumacz"
+        xmlns:vm="clr-namespace:IO_Mat_tlumacz.ViewModel"
         mc:Ignorable="d"
+        x:Name="Root"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    
+    <Window.Resources>
+        <vm:MainViewModel x:Key="mainviewmodel"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource mainviewmodel}">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition Height="64"/>
@@ -16,9 +22,19 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <local:CodeView Grid.Column="0"/>
-            <local:CodeView Grid.Column="1"/>
+            <view:CodeView Grid.Column="0"  
+                        CodeText = "{Binding PanelL.CodeText,           Mode=TwoWay}"
+                    LanguageList = "{Binding PanelL.LanguageList,       Mode=TwoWay}"
+                SelectedLanguage = "{Binding PanelL.SelectedLanguage,   Mode=TwoWay}"
+                />
+            <view:CodeView Grid.Column="1"  
+                        CodeText = "{Binding PanelR.CodeText,           Mode=TwoWay}"
+                    LanguageList = "{Binding PanelR.LanguageList,       Mode=TwoWay}"
+                SelectedLanguage = "{Binding PanelR.SelectedLanguage,   Mode=TwoWay}"
+                />
         </Grid>
-        <Button Content="Convert" Grid.Row="1" HorizontalAlignment="Center" Width="150" Height="30"/>
+        <Button Content="Convert" Grid.Row="1" HorizontalAlignment="Center" Width="150" Height="30"
+            Command="{Binding Translate}"   
+            />
     </Grid>
 </Window>
