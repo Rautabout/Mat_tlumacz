@@ -2,35 +2,41 @@
 
 public class BaseForTrees
 {
-	public BaseForTrees()
-	{
-		
-		class Node
+		var symbols = new Dictionary<String, String[3]>()
 		{
+
+		};
+
+	class Node
+	{
 		public int value;
 		public Node left;
 		public Node right;
 
-		public Node(int value)
+		public Node(int value){
+		
+				this.value = velue;
+				this.left = null;
+				this.right = null;
+		}
+	}
+
+	class Tree
+	{
+		public Node root;
+		public Tree()
 		{
-			this.value = velue;
-			this.left = null;
-			this.right = null;
+			root = null;
 		}
 
-		class Tree
+		bool isEmpty()
 		{
-			public Node root;
-			public Tree()
-			{
-				root = null;
-			}
-			bool isEmpty()
-			{
-				return root == null;
-			}
+			return root == null;
 		}
-	};
+	}
 
+
+	
 }
-}
+
+
