@@ -2,34 +2,35 @@
 
 public class BaseForTrees
 {
-		var symbols = new Dictionary<String, String[3]>() //Kolejność wartości Doc, Tex, MathML
+		var symbols = new Dictionary<String, String[4]>() //Kolejność wartości Doc, Tex, MathML, priorytety
 		{
-			{ "+", ["+","+",""]},
-			{ "-", ["-","-",""]},
-			{ "*", ["*","\\cdot",""]},
-			{ "^", ["^","^",""]},
-			{ "_", ["_","_",""]},
-			{ "/", ["/","\\frac",""]},
-			{ "sqrt", ["\\sqrt","\\sqrt",""]},
-			{ "int", ["\\int","\\int",""]},
-			{ "alpha", ["\\alpha","\\alpha",""]},
-			{ "beta", ["\\beta","\\beta",""]},
-			{ "gamma", ["\\gamma","\\gamma",""]},
-			{ "delta", ["\\delta","\\delta",""]},
-			{ "sin", ["sin","\\sin",""]},
-			{ "cos", ["cos","\\cos",""]},
-			{ "tan", ["tan","\\tan",""]},
-			{ "cot", ["cot","\\cot",""]},
-			{ "<=", ["\\le","\\leq",""]},
-			{ ">=", ["\\ge","\\geq",""]},
-			{ "<", ["<","<",""]},
-			{ ">", [">",">",""]},
-			{ "in", ["\\in","\\in",""]},
-			{ "notin", ["\\notelement","\\notin",""]},
-			{ "and", ["\\vedge","\\land",""]},
-			{ "or", ["\\vee","\\lor",""]},
-			{ "pi", ["\\pi","\\pi",""]},
-			{ "e", ["exp(1)","e",""]}
+			{ "+", ["+","+","","0"]},
+			{ "-", ["-","-","","0"]},
+			{ "*", ["*","\\cdot","","1"]}, 
+			{ "^", ["^","^","","3"]},
+			{ "_", ["_","_","","3"]},
+			{ "/", ["/","\\frac","","2"]},
+			{ "sqrt", ["\\sqrt","\\sqrt","","4"]},
+			{ "int", ["\\int","\\int","","4"]},
+			{ "alpha", ["\\alpha","\\alpha","","6"]},
+			{ "beta", ["\\beta","\\beta","","6"]},
+			{ "gamma", ["\\gamma","\\gamma","","6"]},
+			{ "delta", ["\\delta","\\delta","","6"]},
+			{ "sin", ["sin","\\sin","","4"]},
+			{ "cos", ["cos","\\cos","","4"]},
+			{ "tan", ["tan","\\tan","","4"]},
+			{ "cot", ["cot","\\cot","","4"]},
+			{ "<=", ["\\le","\\leq","","0"]},
+			{ ">=", ["\\ge","\\geq","","0"]},
+			{ "<", ["<","<","","0"]},
+			{ ">", [">",">","","0"]},
+			{ "in", ["\\in","\\in","","0"]},
+			{ "notin", ["\\notelement","\\notin","","0"]},
+			{ "and", ["\\vedge","\\land","","0"]},
+			{ "or", ["\\vee","\\lor","","0"]},
+			{ "pi", ["\\pi","\\pi","","6"]},
+			{ "e", ["exp(1)","e","","6"]},
+			{ "(", ["(","(","","5"]}
 		};
 
 	class Node
