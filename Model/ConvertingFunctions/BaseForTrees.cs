@@ -41,10 +41,10 @@ public class BaseForTrees
 		public Node left;
 		public Node right;
 
-		public Node(int value){
+		public Node(string value){
 		
 				this.value = value;
-				this.left = null;
+				this.left = null
 				this.right = null;
 		}
 	}

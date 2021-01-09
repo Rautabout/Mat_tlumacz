@@ -34,3 +34,12 @@ C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz old\obj\Debug\IO_Mat_tl
 C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz old\obj\Debug\IO_Mat_tlumacz.Properties.Resources.resources
 C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz old\obj\Debug\IO_Mat_tlumacz.csproj.GenerateResource.cache
 C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz old\obj\Debug\IO_Mat_tlumacz.csproj.CoreCompileInputs.cache
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz.csprojAssemblyReference.cache
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\CodeView.g.cs
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\MainWindow.g.cs
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\App.g.cs
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz_MarkupCompile.cache
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz_MarkupCompile.lref
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz.exe
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz.pdb
