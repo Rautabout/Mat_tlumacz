@@ -35,7 +35,7 @@ public class BaseForTrees
 
 	class Node
 	{
-		public int value;
+		public string value;
 		public Node left;
 		public Node right;
 
