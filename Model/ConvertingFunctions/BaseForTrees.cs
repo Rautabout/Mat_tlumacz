@@ -38,14 +38,14 @@ public class BaseForTrees
 
     class Node
 	{
-		public int value;
+		public string value;
 		public Node left;
 		public Node right;
 
-		public Node(int value){
+		public Node(string value){
 		
 				this.value = value;
-				this.left = null;
+				this.left = null
 				this.right = null;
 		}
 	}
