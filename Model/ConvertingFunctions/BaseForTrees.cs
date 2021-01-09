@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class BaseForTrees
+public abstract class BaseForTrees
 {
-    Dictionary<string, string[]> symbols = new Dictionary<string, string[]>() //Kolejność wartości Doc, Tex, MathML, priorytety
+    public Dictionary<string, string[]> symbols = new Dictionary<string, string[]>() //Kolejność wartości Doc, Tex, MathML, priorytety
 		{
 
             { "+",new string[] {"+","+","<mo>+</mo>","0" } },
@@ -36,7 +36,7 @@ public class BaseForTrees
 		};
 
 
-    class Node
+    public class Node
 	{
 		public string value;
 		public Node left;
@@ -45,12 +45,12 @@ public class BaseForTrees
 		public Node(string value){
 		
 				this.value = value;
-				this.left = null
+				this.left = null;
 				this.right = null;
 		}
 	}
 
-	class Tree
+	public class Tree
 	{
 		public Node root;
 		public Tree()

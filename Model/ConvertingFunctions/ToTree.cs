@@ -5,7 +5,7 @@ public class ToTree
 {
 	public ToTree()
 	{
-		public static void texToTree(string input) {
+		void texToTree(string input) {
 			
 			input = input.Replace(" ", "");
 			
@@ -13,7 +13,7 @@ public class ToTree
 			
 		}
 
-		public static void docToTree(string input)
+		void docToTree(string input)
 		{
 
 		}
