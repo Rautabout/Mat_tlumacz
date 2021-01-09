@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public class BaseForTrees
+public abstract class BaseForTrees
 {
-    Dictionary<string, string[]> symbols = new Dictionary<string, string[]>() //Kolejność wartości Doc, Tex, MathML, priorytety
+    public Dictionary<string, string[]> symbols = new Dictionary<string, string[]>() //Kolejność wartości Doc, Tex, MathML, priorytety
 		{
 
             { "+",new string[] {"+","+","<mo>+</mo>","0" } },
