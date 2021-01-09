@@ -55,6 +55,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\ConvertingFunctions\BaseForTrees.cs" />
+    <Compile Include="Model\ConvertingFunctions\FromTree.cs" />
+    <Compile Include="Model\ConvertingFunctions\ToTree.cs" />
+    <Compile Include="Model\TreeModel\Base\MathLanguage.cs" />
+    <Compile Include="Model\TreeModel\Base\MathObject.cs" />
+    <Compile Include="Model\TreeModel\LaTeX\LaTeXObject.cs" />
+    <Compile Include="Model\TreeModel\MathML\MathMLObject.cs" />
     <Compile Include="ViewModel\Base\RelayCommand.cs" />
     <Compile Include="ViewModel\Base\ViewModelBase.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
