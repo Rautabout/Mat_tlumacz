@@ -3,35 +3,36 @@ using System.Collections.Generic;
 
 public class BaseForTrees
 {
-		var symbols = new Dictionary<String, String[4]>() //Kolejność wartości Doc, Tex, MathML, priorytety
+    Dictionary<string, string[]> symbols = new Dictionary<string, string[]>() //Kolejność wartości Doc, Tex, MathML, priorytety
 		{
-			{ "+", ["+","+","<mo>+</mo>","0"]},
-			{ "-", ["-","-","<mo>-</mo>","0"]},
-			{ "*", ["*","\\cdot","<mo>*</mo>","1"]}, 
-			{ "^", ["^","^","<msup>","3"]},
-			{ "_", ["_","_","<msub>","3"]},
-			{ "/", ["/","\\frac","<mfrac>","2"]},
-			{ "sqrt", ["\\sqrt","\\sqrt","<msqrt>","4"]},
-			{ "int", ["\\int","\\int","<mo>&int;</mo>","4"]},
-			{ "alpha", ["\\alpha","\\alpha","<mo>&alpha;</mo>","6"]},
-			{ "beta", ["\\beta","\\beta","<mo>&beta;</mo>","6"]},
-			{ "gamma", ["\\gamma","\\gamma","<mo>&gamma;</mo>","6"]},
-			{ "delta", ["\\delta","\\delta","<mo>&delta;</mo>","6"]},
-			{ "sin", ["sin","\\sin","<mi>sin</mi>","4"]},
-			{ "cos", ["cos","\\cos","<mi>cos</mi>","4"]},
-			{ "tan", ["tan","\\tan","<mi>tan</mi>","4"]},
-			{ "cot", ["cot","\\cot","<mi>cot</mi>","4"]},
-			{ "<=", ["\\le","\\leq","<mo><=</mo>","0"]},
-			{ ">=", ["\\ge","\\geq","<mo>>=</mo>","0"]},
-			{ "<", ["<","<","<mo><</mo>","0"]},
-			{ ">", [">",">","<mo>></mo>","0"]},
-			{ "in", ["\\in","\\in","<mi>in</mi>","0"]},
-			{ "notin", ["\\notelement","\\notin","<mi>notin</mi>","0"]},
-			{ "and", ["\\vedge","\\land","<mi>and</mi>","0"]},
-			{ "or", ["\\vee","\\lor","<mi>or</mi>","0"]},
-			{ "pi", ["\\pi","\\pi","<mi>pi</mi>","6"]},
-			{ "e", ["exp(1)","e","<mi>e</mi>","6"]},
-			{ "(", ["(","(","<mo>(</mo>","5"]}
+
+            { "+",new string[] {"+","+","<mo>+</mo>","0" } },
+			{ "-",new string[] {"-","-","<mo>-</mo>","0" } },
+			{ "*",new string[] {"*","\\cdot","<mo>*</mo>","1" } }, 
+			{ "^",new string[] {"^","^","<msup>","3" } },
+			{ "_",new string[] {"_","_","<msub>","3" } },
+			{ "/",new string[] {"/","\\frac","<mfrac>","2" } },
+			{ "sqrt",new string[] {"\\sqrt","\\sqrt","<msqrt>","4" } },
+			{ "int",new string[] {"\\int","\\int","<mo>&int;</mo>","4" } },
+			{ "alpha",new string[] {"\\alpha","\\alpha","<mo>&alpha;</mo>","6" } },
+			{ "beta",new string[] {"\\beta","\\beta","<mo>&beta;</mo>","6" } },
+			{ "gamma",new string[] {"\\gamma","\\gamma","<mo>&gamma;</mo>","6" } },
+			{ "delta",new string[] {"\\delta","\\delta","<mo>&delta;</mo>","6" } },
+			{ "sin",new string[] {"sin","\\sin","<mi>sin</mi>","4" } },
+			{ "cos",new string[] {"cos","\\cos","<mi>cos</mi>","4" } },
+			{ "tan",new string[] {"tan","\\tan","<mi>tan</mi>","4" } },
+			{ "cot",new string[] {"cot","\\cot","<mi>cot</mi>","4" } },
+			{ "<=",new string[] {"\\le","\\leq","<mo><=</mo>","0" } },
+			{ ">=",new string[] {"\\ge","\\geq","<mo>>=</mo>","0" } },
+			{ "<",new string[] {"<","<","<mo><</mo>","0" } },
+			{ ">",new string[] {">",">","<mo>></mo>","0" } },
+			{ "in",new string[] {"\\in","\\in","<mi>in</mi>","0" } },
+			{ "notin",new string[] {"\\notelement","\\notin","<mi>notin</mi>","0" } },
+			{ "and",new string[] {"\\vedge","\\land","<mi>and</mi>","0" } },
+			{ "or",new string[] {"\\vee","\\lor","<mi>or</mi>","0" } },
+			{ "pi",new string[] {"\\pi","\\pi","<mi>pi</mi>","6" } },
+			{ "e",new string[] {"exp(1)","e","<mi>e</mi>","6" } },
+			{ "(",new string[] {"(","(","<mo>(</mo>","5" } }
 		};
 
 
