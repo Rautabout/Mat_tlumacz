@@ -1,5 +1,5 @@
 import Dictionary as dic 
-from binarytree import Node
+from treelib import Node, Tree
 
 # def findNewRoot():
 
@@ -28,25 +28,29 @@ def findProperFragments(input):
             if openBrackets==0:
                 isSomeBracketOpen =False
 
-        
-        
+        if i == len(input)-1 and tempIndexes!=[]:
+            tempIndexes.append(i)
+            tableOfProperIndexes.append(tempIndexes)
+
     return tableOfProperIndexes
             
 
 def findRoot(tableofIndexes, input, maxPriority, dictionary):
     indexOfRoot = -1
     keyofRoot=""
-    for t in tableofIndexes:
-        for priority in range(maxPriority+1):
+    valueForRoot =""
+    for priority in range(maxPriority+1):
+        for t in tableofIndexes:
             for key,value in dictionary.items():
                 if value[3]==str(priority):
                     maybeRoot=input[t[0]:t[1]].find(value[1])
                     if maybeRoot != -1:
-                        if(indexOfRoot == -1 or indexOfRoot>maybeRoot):
-                            indexOfRoot = maybeRoot
+                        if(indexOfRoot == -1 or indexOfRoot>maybeRoot+t[0]):
+                            indexOfRoot = maybeRoot+t[0]
                             keyofRoot = key
+                            valueForRoot = value[1]
         if(indexOfRoot!=-1):
-            return [indexOfRoot,keyofRoot]
+            return [indexOfRoot,keyofRoot,valueForRoot]
 
 
 def addMultiplySign(input,dictionary):
@@ -88,15 +92,55 @@ def addMultiplySign(input,dictionary):
 
     return output
 
-def textToTree(input):
-    input = input.replace(" ","")
-    input = input.replace("\n","")
-    maxPriority = dic.findMaxPriority(dic.symbols)
-    print(findRoot(findProperFragments(input),input,maxPriority,dic.symbols))
+def findEndIndexOfActualBracket(openIndex, input):
+    openBrackets =1
 
+    for i in range(openIndex+1,len(input)+1):
+        if input[i]=='{':
+            print('otwieram')
+            openBrackets +=1
+        if input[i] == '}':
+            print('zamykam')
+            openBrackets -=1
+        if openBrackets ==0:
+            return i
+
+def textToTree(inputString):
+    tree = Tree()
+    dictionary = dic.symbols
+    inputString = inputString.replace(" ","")
+    inputString = inputString.replace("\n","")
+    maxPriority = dic.findMaxPriority(dictionary)
+    inputString = addMultiplySign(inputString,dictionary)
     
+    # root returns [indexOfRoot,keyofRoot,valueForRoot]
+    root = findRoot(findProperFragments(inputString),inputString,maxPriority,dictionary)
+    
+    tree.create_node(root[1],'root')
+
+    while root!=None:
+        if root[1] in dic.teXChildsWithoutBrackets:
+            left = inputString[0:root[0]]
+            right = inputString[root[0]+len(root[2]):]
+        if root[1] in dic.teXChildsWithBrackets:
+            endOfFirst = findEndIndexOfActualBracket(root[0]+len(root[2]),inputString)
+            endOfSecond = findEndIndexOfActualBracket(endOfFirst+1,inputString)
+            left=inputString[root[0]+1+len(root[2]):endOfFirst]
+            right=inputString[endOfFirst+2:endOfSecond]
+            print(endOfFirst)
+            print(endOfSecond)
+        # if root[1] in dic.teXChildsWithRightBracket:
+        #     endOfBracket = findEndIndexOfActualBracket
+        #     left = inputString[:root[0]]
+        #     right = 
+        print(root[0])
+        print(left)
+        print(right)
+        root = None
 
 
-input = '275a-\\frac{-b-\sqrt{b^{2}-4ac}}{2abc}+5^{454}'
 
-print(addMultiplySign(input, dic.symbols))
+input = '2+\\frac{-b-\sqrt{b^{2}-4ac}}{2abc}+5'
+
+textToTree(input)
+

@@ -29,6 +29,11 @@ symbols = { "+":["+","+","<mo>+</mo>","0" ] ,
 
 numbers = ["0","1","2","3","4","5","6","7","8","9"]
 
+teXChildsWithoutBrackets = ['+','-','*','<=','>=','<','>','in','notin','and','or']
+teXChildsWithBrackets = ["/"]
+teXChildsWithRightBracket = ["^","_"]
+teXChildWithBracket=["sqrt","int"]
+
 def findMaxPriority(dictionary):
     maxPriority=0
 
