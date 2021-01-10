@@ -1,4 +1,4 @@
-import Dictionary as dic 
+import dictionary as dic 
 from treelib import Node, Tree
 
 # def findNewRoot():
@@ -94,7 +94,7 @@ def addMultiplySign(input,dictionary):
 
 def findEndIndexOfActualBracket(openIndex, input):
     openBrackets =1
-
+    
     for i in range(openIndex+1,len(input)+1):
         if input[i]=='{':
             print('otwieram')
@@ -105,6 +105,57 @@ def findEndIndexOfActualBracket(openIndex, input):
         if openBrackets ==0:
             return i
 
+def findChilds(inputString,root):
+    if root[1] in dic.teXChildsWithoutBrackets:
+        left = inputString[0:root[0]]
+        right = inputString[root[0]+len(root[2]):]
+    if root[1] in dic.teXChildsWithBrackets:
+        endOfFirst = findEndIndexOfActualBracket(root[0]+len(root[2]),inputString)
+        endOfSecond = findEndIndexOfActualBracket(endOfFirst+1,inputString)
+        left=inputString[root[0]+1+len(root[2]):endOfFirst]
+        right=inputString[endOfFirst+2:endOfSecond]
+        print(endOfFirst)
+        print(endOfSecond)
+    if root[1] in dic.teXChildsWithRightBracket:
+        endOfBracket = findEndIndexOfActualBracket
+        left = inputString[:root[0]]
+        right = inputString[root[0]+2:-1]
+    if root[1] in dic.teXChildWithBracket:
+        left=inputString[root[0]+len(root[2])+1:-1]
+        right = None
+    return [left,right]
+
+def findNextSubtree(inputString,maxPriority,dictionary,tree, rootName,parent):
+
+    root = findRoot(findProperFragments(inputString),inputString,maxPriority,dictionary)    
+    left = findChilds(inputString,root)[0]
+    right = findChilds(inputString,root)[1]    
+    
+    if root != None:
+        if parent== '':
+            tree.create_node(root[1],rootName)
+            print('root: ' +root[1])
+        else:
+            tree.create_node(root[1],rootName,parent=parent)
+            print(rootName+': '+root[1])
+        
+        try:
+            findNextSubtree(left,maxPriority,dictionary,tree,rootName+'.left',rootName)
+            print(rootName+'.left: '+left)
+        except:
+            tree.create_node(left,rootName+'.left',parent=rootName)
+        try:
+            print(rootName+'.right: '+right)
+            findNextSubtree(right,maxPriority,dictionary,tree,rootName+'.right',rootName)
+        except:
+            if right !=None:
+                tree.create_node(right,rootName+'.right',parent=rootName)
+            else:
+                tree.create_node('None',rootName+'.right',parent=rootName)
+    return tree
+
+    
+
 def textToTree(inputString):
     tree = Tree()
     dictionary = dic.symbols
@@ -114,33 +165,19 @@ def textToTree(inputString):
     inputString = addMultiplySign(inputString,dictionary)
     
     # root returns [indexOfRoot,keyofRoot,valueForRoot]
-    root = findRoot(findProperFragments(inputString),inputString,maxPriority,dictionary)
+    tree = findNextSubtree(inputString,maxPriority,dictionary,tree,'root','')
+
+  
+
     
-    tree.create_node(root[1],'root')
 
-    while root!=None:
-        if root[1] in dic.teXChildsWithoutBrackets:
-            left = inputString[0:root[0]]
-            right = inputString[root[0]+len(root[2]):]
-        if root[1] in dic.teXChildsWithBrackets:
-            endOfFirst = findEndIndexOfActualBracket(root[0]+len(root[2]),inputString)
-            endOfSecond = findEndIndexOfActualBracket(endOfFirst+1,inputString)
-            left=inputString[root[0]+1+len(root[2]):endOfFirst]
-            right=inputString[endOfFirst+2:endOfSecond]
-            print(endOfFirst)
-            print(endOfSecond)
-        # if root[1] in dic.teXChildsWithRightBracket:
-        #     endOfBracket = findEndIndexOfActualBracket
-        #     left = inputString[:root[0]]
-        #     right = 
-        print(root[0])
-        print(left)
-        print(right)
-        root = None
+
+    tree.show()
 
 
 
-input = '2+\\frac{-b-\sqrt{b^{2}-4ac}}{2abc}+5'
+
+input = '\sqrt{b^{2}-4ac}+5ab' #Pamiętać, żeby naprawić kwestię -b-4ac
 
 textToTree(input)
 

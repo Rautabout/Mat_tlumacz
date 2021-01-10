@@ -33,6 +33,7 @@ teXChildsWithoutBrackets = ['+','-','*','<=','>=','<','>','in','notin','and','or
 teXChildsWithBrackets = ["/"]
 teXChildsWithRightBracket = ["^","_"]
 teXChildWithBracket=["sqrt","int"]
+teXJustSymbols=["alpha","beta","gamma","delta","pi","e","sin","cos","tan","cot"]
 
 def findMaxPriority(dictionary):
     maxPriority=0
