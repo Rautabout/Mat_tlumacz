@@ -16,7 +16,22 @@ def isWholeInBracket(input):
     else:
         return False
     
+
+def modifyNegativePhrases(input):
+    output=''
+    IndexOfNextStart=0
     
+    for i in range(len(input)):
+        if input[i]=="-":
+            if i-1==-1 or input[i-1]=="(" or input[i-1]=="{":
+                output+=input[IndexOfNextStart:i]+'[minus]'
+                IndexOfNextStart = i+1
+    
+    if IndexOfNextStart< len(input):
+        output += input[IndexOfNextStart:]
+
+    return output
+
 
 
     
@@ -68,9 +83,6 @@ def findRoot(tableofIndexes, input, maxPriority, dictionary):
         if(indexOfRoot!=-1):
             return [indexOfRoot,keyofRoot,valueForRoot]
 
-# def noteMultiplySignsBetweenKeyWords(input, listOfKeys):
-#     output="" 
-#     for i in input: #ASCII dużych liter 65-90, małych 97-122
 
 def addMultiplySign(input,dictionary,listtOfKeys):
     previousIsNotEmpty = False
@@ -191,6 +203,7 @@ def textToTree(inputString):
     inputString = inputString.replace("\n","")
     maxPriority = dic.findMaxPriority(dictionary)
     inputString = addMultiplySign(inputString,dictionary,dic.TexsymbolsWithUndercoverMultiplySign)
+    inputString = modifyNegativePhrases(inputString)
     inputString = inputString.replace("(",'{')
     inputString = inputString.replace(')','}') 
 
@@ -207,7 +220,7 @@ def textToTree(inputString):
 
 
 
-input = '-b\sqrt{b^{2^{3}}-4ac}+(5+a)b' #Pamiętać, żeby naprawić kwestię -b-4ac
+input = '-b\sqrt{-b^{2^{3}}-4ac}+(-5+a)b' #Pamiętać, żeby naprawić kwestię -b-4ac
 print(addMultiplySign(input,dic.symbols,dic.TexsymbolsWithUndercoverMultiplySign))
 
 
