@@ -7,7 +7,7 @@ def changeEndingBracket(iteretorStart, iteratorEnd, inputString):
         if inputString[j]==')':
             inputString = inputString[0:j] +' }' +  inputString[j+1:iteratorEnd]
             #print('b' + inputString)
-            break;
+            break
     return inputString
     
 

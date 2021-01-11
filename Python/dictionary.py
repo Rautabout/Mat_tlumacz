@@ -1,6 +1,6 @@
 symbols = { "+":["+","+","<mo>+</mo>","0" ] ,
 			 "-":["-","-","<mo>-</mo>","0"],
-			"*":["\bullet","\cdot","<mo>*</mo>","1"], 
+			"*":["\\bullet","\cdot","<mo>*</mo>","1"], 
 			 "^":["^","^","<msup>","3"],
 			"_":["_","_","<msub>","3"],
 			 "/":["/","\\frac","<mfrac>","2"],
@@ -29,11 +29,13 @@ symbols = { "+":["+","+","<mo>+</mo>","0" ] ,
 
 numbers = ["0","1","2","3","4","5","6","7","8","9"]
 
+TexsymbolsWithUndercoverMultiplySign = ["\sqrt","\int","\\alpha","\\beta","\gamma","\delta","\pi","\sin","\cos","\\tan","\cot"]
 teXChildsWithoutBrackets = ['+','-','*','<=','>=','<','>','in','notin','and','or']
 teXChildsWithBrackets = ["/"]
 teXChildsWithRightBracket = ["^","_"]
 teXChildWithBracket=["sqrt","int"]
-teXJustSymbols=["alpha","beta","gamma","delta","pi","e","sin","cos","tan","cot"]
+teXJustSymbols=["alpha","beta","gamma","delta","pi","e"]
+teXFunctions=["sin","cos","tan","cot"]
 
 def findMaxPriority(dictionary):
     maxPriority=0

@@ -68,8 +68,11 @@ def findRoot(tableofIndexes, input, maxPriority, dictionary):
         if(indexOfRoot!=-1):
             return [indexOfRoot,keyofRoot,valueForRoot]
 
+# def noteMultiplySignsBetweenKeyWords(input, listOfKeys):
+#     output="" 
+#     for i in input: #ASCII dużych liter 65-90, małych 97-122
 
-def addMultiplySign(input,dictionary):
+def addMultiplySign(input,dictionary,listtOfKeys):
     previousIsNotEmpty = False
     isPreviousASymbol = False
     output=""
@@ -79,25 +82,28 @@ def addMultiplySign(input,dictionary):
     changedString = input.replace('{'," ")
     changedString = changedString.replace('}'," ")
     for value in dictionary.values():
-        changedString = changedString.replace(value[1], " "*len(value[1]))
+        if value[1] not in listtOfKeys:
+            changedString = changedString.replace(value[1], " "*len(value[1]))
+        else:
+            changedString = changedString.replace(value[1], "\\"+" "*(len(value[1])-1))
 
     for i in range(len(changedString)):
         if changedString[i] == ' ':
             previousIsNotEmpty = False
             continue
         if previousIsNotEmpty:
-            if isPreviousASymbol and changedString[i]!=')':
+            if isPreviousASymbol and (changedString[i]=="\\" or changedString[i]!=')'):
                 output +=  input[indexOfNextStart:i] + '\cdot'
                 indexOfNextStart = i
             else:
-                if changedString[i] not in dic.numbers and changedString[i]!=')':
+                if changedString[i] not in dic.numbers and(changedString[i]=="\\" or changedString[i]!=')'):
                     output +=  input[indexOfNextStart:i] + '\cdot'
                     indexOfNextStart = i
             
         else:
             previousIsNotEmpty = True
 
-        if changedString[i] not in dic.numbers:
+        if changedString[i] not in dic.numbers and changedString[i]!='(':
             isPreviousASymbol = True
         else:
             isPreviousASymbol = False
@@ -184,7 +190,7 @@ def textToTree(inputString):
     inputString = inputString.replace(" ","")
     inputString = inputString.replace("\n","")
     maxPriority = dic.findMaxPriority(dictionary)
-    inputString = addMultiplySign(inputString,dictionary)
+    inputString = addMultiplySign(inputString,dictionary,dic.TexsymbolsWithUndercoverMultiplySign)
     inputString = inputString.replace("(",'{')
     inputString = inputString.replace(')','}') 
 
@@ -201,8 +207,8 @@ def textToTree(inputString):
 
 
 
-input = '\sqrt{b^{2^{3}}-4ac}+(5+a)b' #Pamiętać, żeby naprawić kwestię -b-4ac
-print(addMultiplySign(input,dic.symbols))
+input = '-b\sqrt{b^{2^{3}}-4ac}+(5+a)b' #Pamiętać, żeby naprawić kwestię -b-4ac
+print(addMultiplySign(input,dic.symbols,dic.TexsymbolsWithUndercoverMultiplySign))
 
 
 
