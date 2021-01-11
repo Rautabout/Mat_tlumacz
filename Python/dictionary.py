@@ -35,6 +35,7 @@ teXChildsWithRightBracket = ["^","_"]
 teXChildWithBracket=["sqrt","int"]
 teXJustSymbols=["alpha","beta","gamma","delta","pi","e","sin","cos","tan","cot"]
 
+docAddOrChangeBracketsAfter = ["^","_","/"]
 functions = ['+','-','*','<=','>=','<','>','in','notin','and','or',"/","^","_","sin","cos","tan","cot"]
 
 def findMaxPriority(dictionary):

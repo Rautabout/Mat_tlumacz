@@ -29,41 +29,101 @@ def changeStartingBracket(iteretorStart,iteratorEnd, inputString):
     return inputString
 
 
-    
+def testPrepareText(input):
+    inputString = input.replace("\n","")
+    inputString += " "
+    tempString = inputString
 
-#def prepareText(input):
-#    inputString = input.replace("\n","")
-#    inputString += " "
-    
-#    lenOfString = len(inputString)
-#    isFinished = False
-#    startingPoint = 0
-    
-#    while (not isFinished):
-#        lenOfString = len(inputString)
-#        for i in range(startingPoint,len(inputString)):
-#            if (inputString[i] == '^') or (inputString[i] == '_') or (inputString[i] == '/'):
-#              if inputString[i+1] == '(':
-#                  inputString = inputString[0:i+1] + '{' +  inputString[i+2:len(inputString)]
-#                  inputString = changeEndingBracket(i, len(inputString), inputString)
-#              else:
-#                  inputString = inputString[0:i+1] + '{' +  inputString[i+1:len(inputString)]
-#                  for j in range(i+1,len(inputString)+1):
-#                      if (inputString[j]==' '):
-#                          inputString = inputString[0:j] +' }' +  inputString[j+1:len(inputString)]
-#                          print(inputString)
-#                          break
-#            if(inputString[i] == '/'):
-#                if (inputString[i-1] == ')'):
-#                    inputString = inputString[0:i-2] + '}' +  inputString[i:len(inputString)]
-#                else:
-#                    inputString = inputString[0:i] + '}' +  inputString[i:len(inputString)]
-#        if(lenOfString == len(inputString)):
-#            isFinished=True
-#        else:
-#            startingPoint = lenOfString+1
+    for sign in dic.docAddOrChangeBracketsAfter:
+        tempString = inputString
+        while (tempString.find(sign)!=-1):
+
+            indexOfSign = tempString.find(sign)
+            shift = len(inputString) - len(tempString)
+            indexOfSign+=shift  
+
+            if inputString[indexOfSign+1] == '(':
+                inputString = inputString[0: indexOfSign+1] + '{' +  inputString[ indexOfSign+2:len(inputString)]
+                inputString = changeEndingBracket(indexOfSign, len(inputString), inputString)
+                #if(inputString[indexOfSign+2]!=' '):
+                #    inputString = changeEndingBracket(indexOfSign, len(inputString), inputString)
+                #else:
+                #    inputString = inputString[0: indexOfSign+1] + inputString[ indexOfSign+2:len(inputString)]
+                #    inputString = changeEndingBracket(indexOfSign, len(inputString), inputString)
+            #elif(sign=="\sqrt"):
+            #    if inputString[indexOfSign+5] == ' ':
+            #        inputString = inputString[0:indexOfSign+5] + '{' +  inputString[indexOfSign+7:len(inputString)]
+            #    else:
+            #        inputString = inputString[0:indexOfSign+5] + '{' +  inputString[indexOfSign+6:len(inputString)]
+
+            #    for j in range(indexOfSign+1,len(inputString)+1):
+            #        if (inputString[j]==' '):
+            #            inputString = inputString[0:j] +' }' +  inputString[j+1:len(inputString)]
+            #            break
+            else:
+                inputString = inputString[0:indexOfSign+1] + '{' +  inputString[indexOfSign+1:len(inputString)]
+                for j in range(indexOfSign+1,len(inputString)+1):
+                    if (inputString[j]==' '):
+                        inputString = inputString[0:j] +' }' +  inputString[j+1:len(inputString)]
+                        break
             
+            tempString = inputString[indexOfSign+1:len(inputString)]
+
+
+    tempString = inputString
+    while (tempString.find("\sqrt")!=-1):
+
+        indexOfSign = tempString.find("\sqrt")
+        shift = len(inputString) - len(tempString)
+        indexOfSign+=shift  
+
+        if inputString[indexOfSign+5] == '(':
+            inputString = inputString[0: indexOfSign+5] + '{' +  inputString[ indexOfSign+6:len(inputString)]
+            if(inputString[indexOfSign+7]!=' '): #sprawdz to jeszcze i pozbądź sie podwójnych nawiasów
+               inputString = changeEndingBracket(indexOfSign+4, len(inputString), inputString)
+            else:
+               inputString = inputString[0: indexOfSign+7] + inputString[ indexOfSign+8:len(inputString)]
+               inputString = changeEndingBracket(indexOfSign+4, len(inputString), inputString)
+        else:
+            if inputString[indexOfSign+5] == ' ':
+                inputString = inputString[0:indexOfSign+5] + '{' +  inputString[indexOfSign+7:len(inputString)]
+            else:
+                inputString = inputString[0:indexOfSign+5] + '{' +  inputString[indexOfSign+6:len(inputString)]
+            for j in range(indexOfSign+1,len(inputString)+1):
+                if (inputString[j]==' '):
+                   inputString = inputString[0:j] +' }' +  inputString[j+1:len(inputString)]
+                   break
             
+            tempString = inputString[indexOfSign+1:len(inputString)]
+
+
+    tempString = inputString
+    while (tempString.find('/')!=-1):
+        indexOfSign = tempString.find('/')
+        shift = len(inputString) - len(tempString)
+        indexOfSign+=shift  
+
+        if inputString[indexOfSign-1] == ')':
+            inputString = inputString[0: indexOfSign-1] + '}' +  inputString[indexOfSign:len(inputString)]
+            inputString = changeStartingBracket(indexOfSign, len(inputString), inputString)
+        # else:
+        #     inputString = inputString[0:indexOfSign] + '}' +  inputString[indexOfSign:len(inputString)]
+        #     for j in range(indexOfSign+1,len(inputString)+1):
+        #         for fun in dic.functions:
+        #             inputString = inputString[0:j-2] + '{' +  inputString[j-2:len(inputString)]
+        #             break
+
+            
+        tempString = inputString[indexOfSign+1:len(inputString)]
+
+            
+        
+
+        
+    #inputString = input.replace(" ","")
+    return inputString
+
+       
             
 def prepareText(input):
     inputString = input.replace("\n","")
@@ -277,10 +337,14 @@ def docToTree(inputString):
 
 input = '\sqrt(b^2 - 4ac)+5ab' 
 
-docToTree(input)
+#docToTree(input)
 
 print(prepareText("2^(2^(2)) + 11^(457^2) + 12_(152) - 13_45 + 15^789_12 "))
 print(prepareText("2+3 "))
 print(prepareText("2+3_3 -()/(((x)+1))+y/x - 1/(2+3)"))
+
+print(testPrepareText("2^(2^(2)) + 11^(457^2) + 12_(152) - 13_45 + 15^789_12 "))
+print(testPrepareText("2+3-\sqrt(12x)"))
+print(testPrepareText("2+3_3 -()/(((x)+1))+y/x - 1/(2+3) + \sqrt{\sqrt 12x}"))
 
 
