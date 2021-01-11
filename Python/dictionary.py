@@ -1,6 +1,6 @@
 symbols = { "+":["+","+","<mo>+</mo>","0" ] ,
 			 "-":["-","-","<mo>-</mo>","0"],
-			"*":["\bullet","\cdot","<mo>*</mo>","1"], 
+			"*":["\\bullet","\cdot","<mo>*</mo>","1"], 
 			 "^":["^","^","<msup>","3"],
 			"_":["_","_","<msub>","3"],
 			 "/":["/","\\frac","<mfrac>","2"],
@@ -34,6 +34,8 @@ teXChildsWithBrackets = ["/"]
 teXChildsWithRightBracket = ["^","_"]
 teXChildWithBracket=["sqrt","int"]
 teXJustSymbols=["alpha","beta","gamma","delta","pi","e","sin","cos","tan","cot"]
+
+functions = ['+','-','*','<=','>=','<','>','in','notin','and','or',"/","^","_","sin","cos","tan","cot"]
 
 def findMaxPriority(dictionary):
     maxPriority=0

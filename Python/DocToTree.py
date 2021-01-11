@@ -3,55 +3,103 @@ from treelib import Node, Tree
 
 
 def changeEndingBracket(iteretorStart, iteratorEnd, inputString):
+    openBrackets = 0
     for j in range(iteretorStart+1,iteratorEnd):
-        if inputString[j]==')':
-            inputString = inputString[0:j] +' }' +  inputString[j+1:iteratorEnd]
-            #print('b' + inputString)
-            break;
+        if (inputString[j]=='('):
+            openBrackets+=1
+        elif (inputString[j]==')'):
+            if openBrackets==0:
+                inputString = inputString[0:j] +' }' +  inputString[j+1:iteratorEnd]
+                break
+            else:
+                 openBrackets-=1
     return inputString
+
+def changeStartingBracket(iteretorStart,iteratorEnd, inputString):
+    openBrackets = 0
+    for j in range(iteretorStart,0,-1):
+        if (inputString[j]==')'):
+            openBrackets+=1
+        elif (inputString[j]=='('):
+            if openBrackets==0:
+                inputString = inputString[0:j] +'{' +  inputString[j+1:iteratorEnd]
+                break
+            else:
+                 openBrackets-=1
+    return inputString
+
+
     
 
+#def prepareText(input):
+#    inputString = input.replace("\n","")
+#    inputString += " "
+    
+#    lenOfString = len(inputString)
+#    isFinished = False
+#    startingPoint = 0
+    
+#    while (not isFinished):
+#        lenOfString = len(inputString)
+#        for i in range(startingPoint,len(inputString)):
+#            if (inputString[i] == '^') or (inputString[i] == '_') or (inputString[i] == '/'):
+#              if inputString[i+1] == '(':
+#                  inputString = inputString[0:i+1] + '{' +  inputString[i+2:len(inputString)]
+#                  inputString = changeEndingBracket(i, len(inputString), inputString)
+#              else:
+#                  inputString = inputString[0:i+1] + '{' +  inputString[i+1:len(inputString)]
+#                  for j in range(i+1,len(inputString)+1):
+#                      if (inputString[j]==' '):
+#                          inputString = inputString[0:j] +' }' +  inputString[j+1:len(inputString)]
+#                          print(inputString)
+#                          break
+#            if(inputString[i] == '/'):
+#                if (inputString[i-1] == ')'):
+#                    inputString = inputString[0:i-2] + '}' +  inputString[i:len(inputString)]
+#                else:
+#                    inputString = inputString[0:i] + '}' +  inputString[i:len(inputString)]
+#        if(lenOfString == len(inputString)):
+#            isFinished=True
+#        else:
+#            startingPoint = lenOfString+1
+            
+            
+            
 def prepareText(input):
     inputString = input.replace("\n","")
     inputString += " "
+    i=0
     
-    lenOfString = len(inputString)
-    isFinished = False
-    startingPoint = 0
-    
-    while (not isFinished):
-        lenOfString = len(inputString)
-        for i in range(startingPoint,len(inputString)):
-            if (inputString[i] == '^') or (inputString[i] == '_'):
-              if inputString[i+1] == '(':
-                  inputString = inputString[0:i+1] + '{' +  inputString[i+2:len(inputString)]
-                  inputString = changeEndingBracket(i, len(inputString), inputString)
-                  #print("a"+ inputString)
-                  #for j in range(i+1,len(inputString)):
-                  #    if inputString[j]==')':
-                  #        inputString = inputString[0:j] +' }' +  inputString[j+1:len(inputString)]
-                          #print('b' + inputString)
-                  #        break;
-              else:
-                  inputString = inputString[0:i+1] + '{' +  inputString[i+1:len(inputString)]
-                  #print('c' +inputString)
-                  for j in range(i+1,len(inputString)):
-                      if (inputString[j]==' '):
-                          inputString = inputString[0:j] +' }' +  inputString[j+1:len(inputString)]
-                          #print("d"+ inputString)
-                          break;
-            if (inputString[i] == '/'):
-                if (inputString[i+1] == '('):
-                    inputString = inputString[0:i+1] + '{' +  inputString[i+2:len(inputString)]
-                    inputString = changeEndingBracket(i, len(inputString), inputString)
-                    
-                    
+    while(i < len(inputString)):
         
+        if (inputString[i] == '^') or (inputString[i] == '_') or (inputString[i] == '/'):
+            if inputString[i+1] == '(':
+                inputString = inputString[0:i+1] + '{' +  inputString[i+2:len(inputString)]
+                inputString = changeEndingBracket(i, len(inputString), inputString)
+            else:
+                inputString = inputString[0:i+1] + '{' +  inputString[i+1:len(inputString)]
+                for j in range(i+1,len(inputString)+1):
+                    if (inputString[j]==' '):
+                        inputString = inputString[0:j] +' }' +  inputString[j+1:len(inputString)]
+                        break
+        if(inputString[i] == '/'):
+            if (inputString[i-1] == ')'):
+                inputString = inputString[0:i-1] + '}' +  inputString[i:len(inputString)]
+                inputString = changeStartingBracket(i, len(inputString), inputString)
+            else:
+                inputString = inputString[0:i] + '}' +  inputString[i:len(inputString)]
+                for j in range(i+1,0,-1):
+                    if (inputString[j] in dic.functions):
+                        inputString = inputString[0:j-2] + '{' +  inputString[j-2:len(inputString)]
+                        i+=2
+                        break
+        #if(inputString[i] == '\\'):
+           
+                
         
-        if(lenOfString == len(inputString)):
-            isFinished=True
-        else:
-            startingPoint = lenOfString
+        i+=1
+                    
+
         
                         
         
@@ -129,11 +177,11 @@ def addMultiplySign(input,dictionary):
             continue
         if previousIsNotEmpty:
             if isPreviousASymbol:
-                output +=  input[indexOfNextStart:i] + "\bullet"
+                output +=  input[indexOfNextStart:i] + "\\bullet"
                 indexOfNextStart = i
             else:
                 if changedString[i] not in dic.numbers:
-                    output +=  input[indexOfNextStart:i] + "\bullet"
+                    output +=  input[indexOfNextStart:i] + "\\bullet"
                     indexOfNextStart = i
             
         else:
@@ -229,9 +277,10 @@ def docToTree(inputString):
 
 input = '\sqrt(b^2 - 4ac)+5ab' 
 
-#docToTree(input)
+docToTree(input)
 
 print(prepareText("2^(2^(2)) + 11^(457^2) + 12_(152) - 13_45 + 15^789_12 "))
 print(prepareText("2+3 "))
-print(prepareText("2+3_3 - /(x+1)"))
+print(prepareText("2+3_3 -()/(((x)+1))+y/x - 1/(2+3)"))
+
 
