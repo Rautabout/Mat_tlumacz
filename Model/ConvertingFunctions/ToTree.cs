@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 using BaseForTrees;
 =======
+using static BaseForTrees;
 >>>>>>> Karolina
 
 public class ToTree
@@ -27,6 +28,17 @@ public class ToTree
 
 =======
         {
+			Tree docTree = new Tree();
+			input = input.Replace("\n", "");
+
+			while(input != "")
+            {
+				for(int i=0; i<=6; i++)
+                {
+
+                }
+            }
+			
 >>>>>>> Karolina
 		}
 	}
