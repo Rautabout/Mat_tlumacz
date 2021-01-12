@@ -2,13 +2,16 @@ import dictionary as dic
 from treelib import Node, Tree
 
 def isWholeInBracket(input):
-    openBrackets=0
+    openBrackets=1
     if input[0]=='{' and input[len(input)-1]=='}':
-        for i in range(1,len(input)-1):
+        for i in range(1,len(input)):
             if input[i]=='{':
                 openBrackets+=1
             if input[i]=='}':
                 openBrackets-=1
+            if openBrackets == 0 and i<len(input)-1:
+                return False
+
         if openBrackets==0:
             return True
         else:
@@ -104,11 +107,11 @@ def addMultiplySign(input,dictionary,listtOfKeys):
             previousIsNotEmpty = False
             continue
         if previousIsNotEmpty:
-            if isPreviousASymbol and (changedString[i]=="\\" or changedString[i]!=')'):
+            if isPreviousASymbol and (changedString[i]=="\\" or changedString[i]!=')') and changedString[i-1]!='(':
                 output +=  input[indexOfNextStart:i] + '\cdot'
                 indexOfNextStart = i
             else:
-                if changedString[i] not in dic.numbers and(changedString[i]=="\\" or changedString[i]!=')'):
+                if changedString[i] not in dic.numbers and(changedString[i]=="\\" or changedString[i]!=')') and changedString[i-1]!='(':
                     output +=  input[indexOfNextStart:i] + '\cdot'
                     indexOfNextStart = i
             
@@ -154,6 +157,12 @@ def findChilds(inputString,root):
         right = inputString[root[0]+2:-1]
     if root[1] in dic.teXChildWithBracket:
         left=inputString[root[0]+len(root[2])+1:-1]
+        right = None
+    if root[1] in dic.teXFunctions:
+        left = inputString[root[0]+len(root[2]):]
+        right = None
+    if root[1] in dic.teXJustSymbols:
+        left=None
         right = None
     return [left,right]
 
@@ -206,24 +215,16 @@ def textToTree(inputString):
     inputString = modifyNegativePhrases(inputString)
     inputString = inputString.replace("(",'{')
     inputString = inputString.replace(')','}') 
-
+    print(inputString)
     # root returns [indexOfRoot,keyofRoot,valueForRoot]
     tree = findNextSubtree(inputString,maxPriority,dictionary,tree,'root','')
-
   
-
-    
-
-
     tree.show()
 
 
 
 
-input = '-b\sqrt{-b^{2^{3}}-4ac}+(-5+a)b' #Pamiętać, żeby naprawić kwestię -b-4ac
-print(addMultiplySign(input,dic.symbols,dic.TexsymbolsWithUndercoverMultiplySign))
-
-
+input = '-b\sqrt{-b^{2^{3}}-4ac}+(-5+a)b+3\sin(\\alpha-5e)' #Pamiętać, żeby naprawić kwestię -b-4ac
 
 textToTree(input)
 
