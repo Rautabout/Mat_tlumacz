@@ -38,6 +38,7 @@ teXJustSymbols=["alpha","beta","gamma","delta","pi","e"]
 teXFunctions=["sin","cos","tan","cot"]
 
 docAddOrChangeBracketsAfter = ["^","_","/"]
+docDeletSpaceBefore = ["\sqrt","\int","\\alpha","\\beta","\gamma","\delta","\pi","\sin","\cos","\\tan","\cot","exp(1)"]
 functions = ['+','-','*','<=','>=','<','>','in','notin','and','or',"/","^","_","sin","cos","tan","cot"]
 
 def findMaxPriority(dictionary):
