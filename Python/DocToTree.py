@@ -34,7 +34,7 @@ def testPrepareText(input):
     inputString += " "
     tempString = inputString
 
-    for sign in dic.docAddOrChangeBracketsAfter:
+    for sign in dic.teXChildsWithRightBracket:
         tempString = inputString
         while (tempString.find(sign)!=-1):
 
@@ -45,21 +45,6 @@ def testPrepareText(input):
             if inputString[indexOfSign+1] == '(':
                 inputString = inputString[0: indexOfSign+1] + '{' +  inputString[ indexOfSign+2:len(inputString)]
                 inputString = changeEndingBracket(indexOfSign, len(inputString), inputString)
-                #if(inputString[indexOfSign+2]!=' '):
-                #    inputString = changeEndingBracket(indexOfSign, len(inputString), inputString)
-                #else:
-                #    inputString = inputString[0: indexOfSign+1] + inputString[ indexOfSign+2:len(inputString)]
-                #    inputString = changeEndingBracket(indexOfSign, len(inputString), inputString)
-            #elif(sign=="\sqrt"):
-            #    if inputString[indexOfSign+5] == ' ':
-            #        inputString = inputString[0:indexOfSign+5] + '{' +  inputString[indexOfSign+7:len(inputString)]
-            #    else:
-            #        inputString = inputString[0:indexOfSign+5] + '{' +  inputString[indexOfSign+6:len(inputString)]
-
-            #    for j in range(indexOfSign+1,len(inputString)+1):
-            #        if (inputString[j]==' '):
-            #            inputString = inputString[0:j] +' }' +  inputString[j+1:len(inputString)]
-            #            break
             else:
                 inputString = inputString[0:indexOfSign+1] + '{' +  inputString[indexOfSign+1:len(inputString)]
                 for j in range(indexOfSign+1,len(inputString)+1):
@@ -72,29 +57,30 @@ def testPrepareText(input):
 
     tempString = inputString
     while (tempString.find("\sqrt")!=-1):
-
         indexOfSign = tempString.find("\sqrt")
         shift = len(inputString) - len(tempString)
         indexOfSign+=shift  
 
         if inputString[indexOfSign+5] == '(':
             inputString = inputString[0: indexOfSign+5] + '{' +  inputString[ indexOfSign+6:len(inputString)]
-            if(inputString[indexOfSign+7]!=' '): #sprawdz to jeszcze i pozbądź sie podwójnych nawiasów
-               inputString = changeEndingBracket(indexOfSign+4, len(inputString), inputString)
+            if(inputString[indexOfSign+6]!=' '):
+                inputString = changeEndingBracket(indexOfSign+6, len(inputString), inputString)
+                inputString = changeEndingBracket(indexOfSign+6, len(inputString), inputString)
             else:
-               inputString = inputString[0: indexOfSign+7] + inputString[ indexOfSign+8:len(inputString)]
-               inputString = changeEndingBracket(indexOfSign+4, len(inputString), inputString)
+                inputString = inputString[0: indexOfSign+6] + inputString[ indexOfSign+7:len(inputString)]
+                inputString = changeEndingBracket(indexOfSign+6, len(inputString), inputString)
         else:
             if inputString[indexOfSign+5] == ' ':
-                inputString = inputString[0:indexOfSign+5] + '{' +  inputString[indexOfSign+7:len(inputString)]
-            else:
                 inputString = inputString[0:indexOfSign+5] + '{' +  inputString[indexOfSign+6:len(inputString)]
-            for j in range(indexOfSign+1,len(inputString)+1):
+            else:
+                inputString = inputString[0:indexOfSign+5] + '{' +  inputString[indexOfSign+5:len(inputString)]
+
+            for j in range(indexOfSign+5,len(inputString)+1):
                 if (inputString[j]==' '):
                    inputString = inputString[0:j] +' }' +  inputString[j+1:len(inputString)]
                    break
             
-            tempString = inputString[indexOfSign+1:len(inputString)]
+        tempString = inputString[indexOfSign+5:len(inputString)]
 
 
     tempString = inputString
@@ -102,6 +88,16 @@ def testPrepareText(input):
         indexOfSign = tempString.find('/')
         shift = len(inputString) - len(tempString)
         indexOfSign+=shift  
+
+        if inputString[indexOfSign+1] == '(':
+            inputString = inputString[0: indexOfSign+1] + '{' +  inputString[ indexOfSign+2:len(inputString)]
+            inputString = changeEndingBracket(indexOfSign, len(inputString), inputString)
+        else:
+            inputString = inputString[0:indexOfSign+1] + '{' +  inputString[indexOfSign+1:len(inputString)]
+            for j in range(indexOfSign+1,len(inputString)+1):
+                if (inputString[j]==' '):
+                    inputString = inputString[0:j] +' }' +  inputString[j+1:len(inputString)]
+                    break
 
         if inputString[indexOfSign-1] == ')':
             inputString = inputString[0: indexOfSign-1] + '}' +  inputString[indexOfSign:len(inputString)]
@@ -345,6 +341,6 @@ print(prepareText("2+3_3 -()/(((x)+1))+y/x - 1/(2+3)"))
 
 print(testPrepareText("2^(2^(2)) + 11^(457^2) + 12_(152) - 13_45 + 15^789_12 "))
 print(testPrepareText("2+3-\sqrt(12x)"))
-print(testPrepareText("2+3_3 -()/(((x)+1))+y/x - 1/(2+3) + \sqrt{\sqrt 12x}"))
+print(testPrepareText("2+3_3 -()/(((x)+1))+y/x - 1/(2+3) + \sqrt( \sqrt(12x)y )"))
 
 
