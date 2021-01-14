@@ -83,7 +83,6 @@ def treeToDoc(tree):
                 #sprawdź, czy istnieje prawy liść
                 if(tree.get_node(rightIdentifier)!=None):
                     if tree.get_node(rightIdentifier).is_leaf():
-                        print("jestem")
                         right = tree.get_node(rightIdentifier)
 
                         #Usuń dzieci z drzewa
