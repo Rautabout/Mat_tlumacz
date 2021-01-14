@@ -172,7 +172,7 @@ def findNextSubtree(inputString,maxPriority,dictionary,tree, rootName,parent):
             root = tree.create_node('(',rootName)
         else:
             root = tree.create_node('(',rootName,parent=parent)
-            tree.create_node("None",rootName+'.right',parent=rootName)
+            # tree.create_node("None",rootName+'.right',parent=rootName)
         left = inputString[1:len(inputString)-1]
         try:
            findNextSubtree(left,maxPriority,dictionary,tree,rootName+'.left',rootName)
@@ -199,8 +199,8 @@ def findNextSubtree(inputString,maxPriority,dictionary,tree, rootName,parent):
             except:
                 if right !=None:
                     tree.create_node(right,rootName+'.right',parent=rootName)
-                else:
-                    tree.create_node('None',rootName+'.right',parent=rootName)
+                # else:
+                #     tree.create_node('None',rootName+'.right',parent=rootName)
     return tree
 
     
@@ -215,16 +215,22 @@ def textToTree(inputString):
     inputString = modifyNegativePhrases(inputString)
     inputString = inputString.replace("(",'{')
     inputString = inputString.replace(')','}') 
-    print(inputString)
+
     # root returns [indexOfRoot,keyofRoot,valueForRoot]
     tree = findNextSubtree(inputString,maxPriority,dictionary,tree,'root','')
   
-    tree.show()
+    return tree
 
 
 
 
-input = '-b\sqrt{-b^{2^{3}}-4ac}+(-5+a)b+3\sin(\\alpha-5e)' #Pamiętać, żeby naprawić kwestię -b-4ac
+input = '-b\sqrt{-b^{2^{3}}-4ac}+(-5+a)b+3\sin(\\alpha-5e)' 
 
-textToTree(input)
+tree = textToTree(input)
 
+
+try:
+    subtree = tree.subtree('root.left.left.left')
+    subtree.show
+except:
+    print("nie ma")
