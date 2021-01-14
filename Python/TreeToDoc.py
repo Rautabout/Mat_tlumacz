@@ -71,6 +71,7 @@ def treeToDoc(tree):
         leavesTab = tree.leaves()
         i = 0
         while(True):
+            tree.show()
             #Sprawdzaj kolejne elementy tablicy, czy nie kończą się one ".left"
             if(leavesTab[i].identifier.endswith(".left")):
                 #stwórz lewy liść, identyfikator rodzica, rodzica i prawy identyfikator
@@ -82,6 +83,7 @@ def treeToDoc(tree):
                 #sprawdź, czy istnieje prawy liść
                 if(tree.get_node(rightIdentifier)!=None):
                     if tree.get_node(rightIdentifier).is_leaf():
+                        print("jestem")
                         right = tree.get_node(rightIdentifier)
 
                         #Usuń dzieci z drzewa
@@ -93,13 +95,13 @@ def treeToDoc(tree):
                         if(parentIdentifier=="root"):
                             tree.create_node(parent.tag + " " + left.tag + " " + right.tag, parentIdentifier)
                         else:
-                            tree.create_node(parent.tag + " " + left.tag, parentIdentifier, parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
+                            tree.create_node(parent.tag + " " + left.tag + " " + right.tag, parentIdentifier, parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
                 else:
                     #usuń lewe dziecko i podmień rodzica
                     tree.remove_node(left.identifier)
                     tree.remove_node(parentIdentifier)
                     if(parentIdentifier=="root"):
-                        tree.create_node(parent.tag + " " + left.tag + " " + right.tag, parentIdentifier)
+                        tree.create_node(parent.tag + " " + left.tag, parentIdentifier)
                     else:
                         tree.create_node(parent.tag + " " + left.tag, parentIdentifier, parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
                 
