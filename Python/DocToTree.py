@@ -35,8 +35,9 @@ def prepareText(input):
                     endingIndex=j
                     break
 
-            if(isWholeInBracket(testString) or isWholeInCurlyBracket(testString)):
-                inputString = inputString[0:indexOfSign+2] + inputString[indexOfSign+3:endingIndex-1] + inputString[endingIndex:len(inputString)]  
+            if(testString!=""):
+                if(isWholeInBracket(testString) or isWholeInCurlyBracket(testString)):
+                    inputString = inputString[0:indexOfSign+2] + inputString[indexOfSign+3:endingIndex-1] + inputString[endingIndex:len(inputString)]  
             
             tempString = inputString[indexOfSign+1:len(inputString)]
 
@@ -66,8 +67,9 @@ def prepareText(input):
                 endingIndex=j
                 break
 
-        if(isWholeInBracket(testString) or isWholeInCurlyBracket(testString)):
-            inputString =  inputString[0:endingIndex+3] + inputString[endingIndex+4:indexOfSign+1] + inputString[indexOfSign+2:len(inputString)]
+        if(testString!=""):
+            if(isWholeInBracket(testString) or isWholeInCurlyBracket(testString)):
+                inputString =  inputString[0:endingIndex+3] + inputString[endingIndex+4:indexOfSign+1] + inputString[indexOfSign+2:len(inputString)]
             
         tempString = inputString[indexOfSign+4:len(inputString)]
 
@@ -124,9 +126,9 @@ def prepareText(input):
                     break
 
             i+=1
-
-        if(isWholeInBracket(testString) or isWholeInCurlyBracket(testString)):
-            inputString = inputString[0:indexOfSign+2] + inputString[indexOfSign+3:endingIndex-1] + inputString[endingIndex:len(inputString)]  
+        if(testString!=""):
+            if(isWholeInBracket(testString) or isWholeInCurlyBracket(testString)):
+                inputString = inputString[0:indexOfSign+2] + inputString[indexOfSign+3:endingIndex-1] + inputString[endingIndex:len(inputString)]  
             
         tempString = inputString[indexOfSign+1:len(inputString)]
 
@@ -213,7 +215,7 @@ def findProperFragments(input):
         if input[i] == '}':
             openBrackets -= 1
             if openBrackets==0:
-                isSomeCurlyBracketOpen =False
+                isSomeCurlyBracketOpen = False
 
         if i == len(input)-1 and tempIndexes!=[]:
             tempIndexes.append(i)
@@ -293,15 +295,26 @@ def findEndIndexOfActualCurlyBracket(openIndex, input):
         if openBrackets ==0:
             return i
 
+def findEndIndexOfActualCurlyBracketBackwards(openIndex, input):
+    openBrackets =1
+    
+    for i in range(openIndex-1,-1,-1):
+        if input[i]=='}':
+            openBrackets +=1
+        if input[i] == '{':
+            openBrackets -=1
+        if openBrackets ==0:
+            return i
+
 def findChilds(inputString,root):
     if root[1] in dic.teXChildsWithoutBrackets:
         left = inputString[0:root[0]]
         right = inputString[root[0]+len(root[2]):]
     if root[1] in dic.teXChildsWithBrackets:
-        endOfFirst = findEndIndexOfActualCurlyBracket(root[0]+len(root[2]),inputString)
-        endOfSecond = findEndIndexOfActualCurlyBracket(endOfFirst+1,inputString)
-        left=inputString[root[0]+1+len(root[2]):endOfFirst]
-        right=inputString[endOfFirst+2:endOfSecond]
+        startOfFirst = findEndIndexOfActualCurlyBracketBackwards(root[0]-len(root[2]),inputString)
+        endOfSecond = findEndIndexOfActualCurlyBracket(root[0]+len(root[2]),inputString)
+        left=inputString[startOfFirst+1:root[0]-1]
+        right=inputString[root[0]+len(root[2])+1:endOfSecond]
     if root[1] in dic.teXChildsWithRightBracket:
         endOfBracket = findEndIndexOfActualCurlyBracket
         left = inputString[:root[0]]
@@ -318,7 +331,7 @@ def findChilds(inputString,root):
     return [left,right]
 
 def findNextSubtree(inputString,maxPriority,dictionary,tree, rootName,parent):
-    if isWholeInBracket(inputString):
+    if isWholeInCurlyBracket(inputString):
         if parent == '':
             root = tree.create_node('(',rootName)
         else:
@@ -361,11 +374,10 @@ def docToTree(inputString):
     dictionary = dic.symbols
     maxPriority = dic.findMaxPriority(dictionary)
     inputString = prepareText(inputString)
-    inputString = addMultiplySign(inputString,dictionary,dic.TexsymbolsWithUndercoverMultiplySign)
+    inputString = addMultiplySign(inputString,dictionary,dic.docSymbolsWithUndercoverMultiplySign)
     inputString = modifyNegativePhrases(inputString)
     inputString = inputString.replace("(",'{')
     inputString = inputString.replace(')','}') 
-    print(inputString)
     # root returns [indexOfRoot,keyofRoot,valueForRoot]
     tree = findNextSubtree(inputString,maxPriority,dictionary,tree,'root','')
   
@@ -374,7 +386,9 @@ def docToTree(inputString):
 
 
 
-input = '\sqrt(b^2 - 4ac)+5ab' 
+#input = '\sqrt(b^2 - 4ac) + 5ab' 
+input = '-b\sqrt(-b^(2^(3)) - 4ac) + (-5+a)b + 3 \sin(\\alpha-5exp(1))'
+#input ='(x+y)/(12-3)'
 
 docToTree(input)
 
