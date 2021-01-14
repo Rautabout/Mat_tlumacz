@@ -2,80 +2,211 @@ import dictionary as dic
 from treelib import Node, Tree
 
 
-def changeEndingBracket(iteretorStart, iteratorEnd, inputString):
-    for j in range(iteretorStart+1,iteratorEnd):
-        if inputString[j]==')':
-            inputString = inputString[0:j] +' }' +  inputString[j+1:iteratorEnd]
-            #print('b' + inputString)
-            break
-    return inputString
-    
-
 def prepareText(input):
     inputString = input.replace("\n","")
-    inputString += " "
+    inputString =" " + inputString + " "
+    tempString = inputString
+    testString = ""
+    endingIndex=0
+    numberOfOpenedBrackets=0
+    numberOfOpenedCurlyBrackets=0
+
+    for sign in dic.docAddOrChangeBracketsAfter:
+        tempString = inputString
+        while (tempString.find(sign)!=-1):
+
+            indexOfSign = tempString.find(sign)
+            shift = len(inputString) - len(tempString)
+            indexOfSign+=shift  
+
+            inputString = inputString[0:indexOfSign+1] + '{' +  inputString[indexOfSign+1:len(inputString)]
+            for j in range(indexOfSign+2,len(inputString)):
+                if(inputString[j]=='('):
+                    numberOfOpenedBrackets+=1
+                elif(inputString[j]==')'):
+                    numberOfOpenedBrackets-=1
+                elif(inputString[j]=='{'):
+                    numberOfOpenedCurlyBrackets+=1
+                elif(inputString[j]=='}'):
+                    numberOfOpenedCurlyBrackets-=1
+                elif ((inputString[j]==' ') and (numberOfOpenedBrackets==0) and (numberOfOpenedCurlyBrackets==0)):
+                    inputString = inputString[0:j] + ' } ' +  inputString[j+1:len(inputString)]
+                    testString = tempString[indexOfSign-shift+1:j-shift-1]
+                    endingIndex=j
+                    break
+
+            if(testString!=""):
+                if(isWholeInBracket(testString) or isWholeInCurlyBracket(testString)):
+                    inputString = inputString[0:indexOfSign+2] + inputString[indexOfSign+3:endingIndex-1] + inputString[endingIndex:len(inputString)]  
+            
+            tempString = inputString[indexOfSign+1:len(inputString)]
+
+
+    tempString = inputString
+    while (tempString.find('/')!=-1):
+        indexOfSign = tempString.find('/')
+        shift = len(inputString) - len(tempString)
+        indexOfSign+=shift  
+        endingIndex=0
+        numberOfOpenedBrackets=0
+        numberOfOpenedCurlyBrackets=0
+
+        inputString = inputString[0: indexOfSign] + '}' +  inputString[indexOfSign:len(inputString)]
+        for j in range(indexOfSign-1,-1, -1):
+            if(inputString[j]==')'):
+                numberOfOpenedBrackets+=1
+            elif(inputString[j]=='('):
+                numberOfOpenedBrackets-=1
+            elif(inputString[j]=='}'):
+                numberOfOpenedCurlyBrackets+=1
+            elif(inputString[j]=='{'):
+                numberOfOpenedCurlyBrackets-=1
+            elif ((inputString[j]==' ') and (numberOfOpenedBrackets==0) and (numberOfOpenedCurlyBrackets==0)):
+                inputString = inputString[0:j] + ' { ' +  inputString[j+1:len(inputString)]
+                testString = tempString[j-shift+1:indexOfSign-shift]
+                endingIndex=j
+                break
+
+        if(testString!=""):
+            if(isWholeInBracket(testString) or isWholeInCurlyBracket(testString)):
+                inputString =  inputString[0:endingIndex+3] + inputString[endingIndex+4:indexOfSign+1] + inputString[indexOfSign+2:len(inputString)]
+            
+        tempString = inputString[indexOfSign+4:len(inputString)]
+
+
     
-    lenOfString = len(inputString)
-    isFinished = False
-    startingPoint = 0
-    
-    while (not isFinished):
-        lenOfString = len(inputString)
-        for i in range(startingPoint,len(inputString)):
-            if (inputString[i] == '^') or (inputString[i] == '_'):
-              if inputString[i+1] == '(':
-                  inputString = inputString[0:i+1] + '{' +  inputString[i+2:len(inputString)]
-                  inputString = changeEndingBracket(i, len(inputString), inputString)
-                  #print("a"+ inputString)
-                  #for j in range(i+1,len(inputString)):
-                  #    if inputString[j]==')':
-                  #        inputString = inputString[0:j] +' }' +  inputString[j+1:len(inputString)]
-                          #print('b' + inputString)
-                  #        break;
-              else:
-                  inputString = inputString[0:i+1] + '{' +  inputString[i+1:len(inputString)]
-                  #print('c' +inputString)
-                  for j in range(i+1,len(inputString)):
-                      if (inputString[j]==' '):
-                          inputString = inputString[0:j] +' }' +  inputString[j+1:len(inputString)]
-                          #print("d"+ inputString)
-                          break;
-            if (inputString[i] == '/'):
-                if (inputString[i+1] == '('):
-                    inputString = inputString[0:i+1] + '{' +  inputString[i+2:len(inputString)]
-                    inputString = changeEndingBracket(i, len(inputString), inputString)
-                    
-                    
+    for item in dic.docDeletSpaceBefore:
+        tempString = inputString
+        index = tempString.find(item)
         
-        
-        if(lenOfString == len(inputString)):
-            isFinished=True
+        while (index!=-1):
+            shift = len(inputString) - len(tempString)
+            index+=shift  
+
+            if((index>=2) and (tempString[index-shift-1]==" ") and ((tempString[index-shift-2]=="(") or (tempString[index-shift-2]=="{"))):
+                inputString = inputString[0:index-1] + inputString[index:len(inputString)]
+
+            tempString = inputString[index+1:len(inputString)]
+            index = tempString.find(item)
+            
+
+    inputString = inputString.replace('\sqrt', '#')
+    tempString = inputString
+    while (tempString.find("#")!=-1):
+        indexOfSign = tempString.find("#")
+        shift = len(inputString) - len(tempString)
+        indexOfSign+=shift  
+        numberOfOpenedBrackets=0
+        numberOfOpenedCurlyBrackets=0
+
+        if inputString[indexOfSign+1] == ' ':
+            inputString = inputString[0: indexOfSign+1] + '{' +  inputString[indexOfSign+2:len(inputString)]
         else:
-            startingPoint = lenOfString
-        
-                        
-        
-                    
-             
-    
-    #inputString = input.replace(" ","")
+            inputString = inputString[0: indexOfSign+1] + '{' +  inputString[indexOfSign+1:len(inputString)]
+
+        i=indexOfSign+2
+        while(i<len(inputString)):
+            if(inputString[i]=='('):
+                numberOfOpenedBrackets+=1
+            elif(inputString[i]==')'):
+                numberOfOpenedBrackets-=1
+            elif(inputString[i]=='{'):
+                numberOfOpenedCurlyBrackets+=1
+            elif(inputString[i]=='}'):
+                numberOfOpenedCurlyBrackets-=1
+
+            if (numberOfOpenedBrackets==0) and (numberOfOpenedCurlyBrackets==0):
+                if((inputString[i]=="#") and (inputString[i+1]==" ")):
+                    i+=2
+                elif(inputString[i]==" "):
+                    inputString = inputString[0: i+1] + '}' +  inputString[i+1:len(inputString)]
+
+                    testString = tempString[indexOfSign-shift+1:i-shift-1]
+                    endingIndex=i
+                    break
+
+            i+=1
+        if(testString!=""):
+            if(isWholeInBracket(testString) or isWholeInCurlyBracket(testString)):
+                inputString = inputString[0:indexOfSign+2] + inputString[indexOfSign+3:endingIndex-1] + inputString[endingIndex:len(inputString)]  
+            
+        tempString = inputString[indexOfSign+1:len(inputString)]
+
+    inputString = inputString.replace('#', '\sqrt')
+    inputString = inputString.replace(" ","")
     return inputString
+
+
+def isWholeInBracket(input):
+    openBrackets=1
+    if input[0]=='(' and input[len(input)-1]==')':
+        for i in range(1,len(input)):
+            if input[i]=='(':
+                openBrackets+=1
+            if input[i]==')':
+                openBrackets-=1
+            if openBrackets == 0 and i<len(input)-1:
+                return False
+
+        if openBrackets==0:
+            return True
+        else:
+            return False
+    else:
+        return False
+
+
+def isWholeInCurlyBracket(input):
+    openBrackets=1
+    if input[0]=='{' and input[len(input)-1]=='}':
+        for i in range(1,len(input)):
+            if input[i]=='{':
+                openBrackets+=1
+            if input[i]=='}':
+                openBrackets-=1
+            if openBrackets == 0 and i<len(input)-1:
+                return False
+
+        if openBrackets==0:
+            return True
+        else:
+            return False
+    else:
+        return False
     
 
+def modifyNegativePhrases(input):
+    output=''
+    IndexOfNextStart=0
+    
+    for i in range(len(input)):
+        if input[i]=="-":
+            if i-1==-1 or input[i-1]=="(" or input[i-1]=="{":
+                output+=input[IndexOfNextStart:i]+'[minus]'
+                IndexOfNextStart = i+1
+    
+    if IndexOfNextStart< len(input):
+        output += input[IndexOfNextStart:]
+
+    return output
+
+
+
+    
 def findProperFragments(input):
     openBrackets = 0
-    isSomeBracketOpen = False
+    isSomeCurlyBracketOpen = False
     tableOfProperIndexes = []
     tempIndexes = []
 
     for i in range(len(input)):
 
-        if tempIndexes==[] and isSomeBracketOpen==False and input[i]!='{':
+        if tempIndexes==[] and isSomeCurlyBracketOpen==False and input[i]!='{':
             tempIndexes.append(i)
         
         if input[i] == '{':
             if openBrackets == 0:
-                isSomeBracketOpen = True
+                isSomeCurlyBracketOpen = True
                 if tempIndexes !=[]:
                     tempIndexes.append(i)
                     tableOfProperIndexes.append(tempIndexes)
@@ -84,14 +215,14 @@ def findProperFragments(input):
         if input[i] == '}':
             openBrackets -= 1
             if openBrackets==0:
-                isSomeBracketOpen = False
+                isSomeCurlyBracketOpen = False
 
         if i == len(input)-1 and tempIndexes!=[]:
             tempIndexes.append(i)
             tableOfProperIndexes.append(tempIndexes)
 
     return tableOfProperIndexes
-
+            
 
 def findRoot(tableofIndexes, input, maxPriority, dictionary):
     indexOfRoot = -1
@@ -111,7 +242,7 @@ def findRoot(tableofIndexes, input, maxPriority, dictionary):
             return [indexOfRoot,keyofRoot,valueForRoot]
 
 
-def addMultiplySign(input,dictionary):
+def addMultiplySign(input,dictionary,listtOfKeys):
     previousIsNotEmpty = False
     isPreviousASymbol = False
     output=""
@@ -121,25 +252,28 @@ def addMultiplySign(input,dictionary):
     changedString = input.replace('{'," ")
     changedString = changedString.replace('}'," ")
     for value in dictionary.values():
-        changedString = changedString.replace(value[0], " "*len(value[0]))
-    
+        if value[0] not in listtOfKeys:
+            changedString = changedString.replace(value[0], " "*len(value[0]))
+        else:
+            changedString = changedString.replace(value[0], "\\"+" "*(len(value[0])-1))
+
     for i in range(len(changedString)):
         if changedString[i] == ' ':
             previousIsNotEmpty = False
             continue
         if previousIsNotEmpty:
-            if isPreviousASymbol:
-                output +=  input[indexOfNextStart:i] + "\bullet"
+            if isPreviousASymbol and (changedString[i]=="\\" or changedString[i]!=')') and changedString[i-1]!='(':
+                output +=  input[indexOfNextStart:i] + '\\bullet'
                 indexOfNextStart = i
             else:
-                if changedString[i] not in dic.numbers:
-                    output +=  input[indexOfNextStart:i] + "\bullet"
+                if changedString[i] not in dic.numbers and(changedString[i]=="\\" or changedString[i]!=')') and changedString[i-1]!='(':
+                    output +=  input[indexOfNextStart:i] + '\\bullet'
                     indexOfNextStart = i
             
         else:
             previousIsNotEmpty = True
 
-        if changedString[i] not in dic.numbers:
+        if changedString[i] not in dic.numbers and changedString[i]!='(':
             isPreviousASymbol = True
         else:
             isPreviousASymbol = False
@@ -150,13 +284,24 @@ def addMultiplySign(input,dictionary):
 
     return output
 
-def findEndIndexOfActualBracket(openIndex, input):
+def findEndIndexOfActualCurlyBracket(openIndex, input):
     openBrackets =1
     
     for i in range(openIndex+1,len(input)+1):
-        if input[i]=='(':
+        if input[i]=='{':
             openBrackets +=1
-        if input[i] == ')':
+        if input[i] == '}':
+            openBrackets -=1
+        if openBrackets ==0:
+            return i
+
+def findEndIndexOfActualCurlyBracketBackwards(openIndex, input):
+    openBrackets =1
+    
+    for i in range(openIndex-1,-1,-1):
+        if input[i]=='}':
+            openBrackets +=1
+        if input[i] == '{':
             openBrackets -=1
         if openBrackets ==0:
             return i
@@ -166,48 +311,60 @@ def findChilds(inputString,root):
         left = inputString[0:root[0]]
         right = inputString[root[0]+len(root[2]):]
     if root[1] in dic.teXChildsWithBrackets:
-        endOfFirst = findEndIndexOfActualBracket(root[0]+len(root[2]),inputString)
-        endOfSecond = findEndIndexOfActualBracket(endOfFirst+1,inputString)
-        left=inputString[root[0]+1+len(root[2]):endOfFirst]
-        right=inputString[endOfFirst+2:endOfSecond]
-        print(endOfFirst)
-        print(endOfSecond)
+        startOfFirst = findEndIndexOfActualCurlyBracketBackwards(root[0]-len(root[2]),inputString)
+        endOfSecond = findEndIndexOfActualCurlyBracket(root[0]+len(root[2]),inputString)
+        left=inputString[startOfFirst+1:root[0]-1]
+        right=inputString[root[0]+len(root[2])+1:endOfSecond]
     if root[1] in dic.teXChildsWithRightBracket:
-        endOfBracket = findEndIndexOfActualBracket
+        endOfBracket = findEndIndexOfActualCurlyBracket
         left = inputString[:root[0]]
         right = inputString[root[0]+2:-1]
     if root[1] in dic.teXChildWithBracket:
         left=inputString[root[0]+len(root[2])+1:-1]
         right = None
+    if root[1] in dic.teXFunctions:
+        left = inputString[root[0]+len(root[2]):]
+        right = None
+    if root[1] in dic.teXJustSymbols:
+        left=None
+        right = None
     return [left,right]
 
 def findNextSubtree(inputString,maxPriority,dictionary,tree, rootName,parent):
-
-    root = findRoot(findProperFragments(inputString),inputString,maxPriority,dictionary)    
-    left = findChilds(inputString,root)[0]
-    right = findChilds(inputString,root)[1]    
-    
-    if root != None:
-        if parent== '':
-            tree.create_node(root[1],rootName)
-            print('root: ' +root[1])
+    if isWholeInCurlyBracket(inputString):
+        if parent == '':
+            root = tree.create_node('(',rootName)
         else:
-            tree.create_node(root[1],rootName,parent=parent)
-            print(rootName+': '+root[1])
-        
+            root = tree.create_node('(',rootName,parent=parent)
+            #tree.create_node("None",rootName+'.right',parent=rootName)
+        left = inputString[1:len(inputString)-1]
         try:
-            findNextSubtree(left,maxPriority,dictionary,tree,rootName+'.left',rootName)
-            print(rootName+'.left: '+left)
+           findNextSubtree(left,maxPriority,dictionary,tree,rootName+'.left',rootName)
         except:
             tree.create_node(left,rootName+'.left',parent=rootName)
-        try:
-            print(rootName+'.right: '+right)
-            findNextSubtree(right,maxPriority,dictionary,tree,rootName+'.right',rootName)
-        except:
-            if right !=None:
-                tree.create_node(right,rootName+'.right',parent=rootName)
+
+    else:    
+        root = findRoot(findProperFragments(inputString),inputString,maxPriority,dictionary)    
+        left = findChilds(inputString,root)[0]
+        right = findChilds(inputString,root)[1]    
+        
+        if root != None:
+            if parent== '':
+                tree.create_node(root[1],rootName)
             else:
-                tree.create_node('None',rootName+'.right',parent=rootName)
+                tree.create_node(root[1],rootName,parent=parent)
+            
+            try:
+                findNextSubtree(left,maxPriority,dictionary,tree,rootName+'.left',rootName)
+            except:
+                tree.create_node(left,rootName+'.left',parent=rootName)
+            try:
+                findNextSubtree(right,maxPriority,dictionary,tree,rootName+'.right',rootName)
+            except:
+                if right !=None:
+                    tree.create_node(right,rootName+'.right',parent=rootName)
+                #else:
+                #    tree.create_node('None',rootName+'.right',parent=rootName)
     return tree
 
     
@@ -215,23 +372,30 @@ def findNextSubtree(inputString,maxPriority,dictionary,tree, rootName,parent):
 def docToTree(inputString):
     tree = Tree()
     dictionary = dic.symbols
-    prepareText(inputString)
     maxPriority = dic.findMaxPriority(dictionary)
-    inputString = addMultiplySign(inputString,dictionary)
-    
+    inputString = prepareText(inputString)
+    inputString = addMultiplySign(inputString,dictionary,dic.docSymbolsWithUndercoverMultiplySign)
+    inputString = modifyNegativePhrases(inputString)
+    inputString = inputString.replace("(",'{')
+    inputString = inputString.replace(')','}') 
     # root returns [indexOfRoot,keyofRoot,valueForRoot]
     tree = findNextSubtree(inputString,maxPriority,dictionary,tree,'root','')
+  
+    #tree.show()
 
-    tree.show()
+    return tree
 
 
 
 
-input = '\sqrt(b^2 - 4ac)+5ab' 
+#input = '\sqrt(b^2 - 4ac) + 5ab' 
+input = '-b\sqrt(-b^(2^(3)) - 4ac) + (-5+a)b + 3 \sin(\\alpha-5exp(1))'
+#input ='(x+y)/(12-3)'
 
-#docToTree(input)
+docToTree(input)
 
-print(prepareText("2^(2^(2)) + 11^(457^2) + 12_(152) - 13_45 + 15^789_12 "))
-print(prepareText("2+3 "))
-print(prepareText("2+3_3 - /(x+1)"))
+#print(prepareText("2^( 2^( 2 ) ) + 11^( 457^2) + 12_(152) - 13_45 + 15^789_12 "))
+#print(prepareText("2+3-\sqrt 12x"))
+#print(prepareText("2+3_3 - (x)/(( x)+1) + y/x - 1/( 2+3) + \sqrt( \sqrt( 12x)y )"))
+
 
