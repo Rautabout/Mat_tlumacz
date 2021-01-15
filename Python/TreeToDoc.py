@@ -13,6 +13,26 @@ def findIndexOfTheLastDot(inputString):
 
     return index
 
+def tagFromParentAndLeftChild(parentTag, leftTag):
+    if parentTag in dic.teXJustSymbols:
+        return dic.symbols[parentTag][0]
+    elif(parentTag=='sqrt'):
+        return dic.symbols[parentTag][0] + "(" + leftTag + ")"
+    elif(parentTag=='('):
+        return "(" + leftTag + ")"
+    else:
+        return dic.symbols[parentTag][0] + leftTag
+
+
+def tagFromParentAndChildren(parentTag, leftTag, rightTag):
+    if parentTag in dic.teXChildsWithoutBrackets:
+        return leftTag + " " + dic.symbols[parentTag][0] + " " + rightTag
+    elif parentTag in dic.teXChildsWithBrackets:
+        return  "(" + leftTag + ")" + dic.symbols[parentTag][0] + "(" + rightTag + ")"
+    elif parentTag in dic.teXChildsWithRightBracket:
+        return   leftTag  + dic.symbols[parentTag][0] + "(" + rightTag + ")"
+
+
 
 # leaf.identifier[0:findIndexOfTheLastDot(leaf.identifier)]    <--- tworzenie Rodzica
 # tree.remove_node(leaf.identifier)    <--- usuwanie
@@ -71,7 +91,7 @@ def treeToDoc(tree):
         leavesTab = tree.leaves()
         i = 0
         while(True):
-            tree.show()
+            #tree.show()
             #Sprawdzaj kolejne elementy tablicy, czy nie kończą się one ".left"
             if(leavesTab[i].identifier.endswith(".left")):
                 #stwórz lewy liść, identyfikator rodzica, rodzica i prawy identyfikator
@@ -92,17 +112,21 @@ def treeToDoc(tree):
                         #podmień rodzica
                         tree.remove_node(parentIdentifier)
                         if(parentIdentifier=="root"):
-                            tree.create_node(parent.tag + " " + left.tag + " " + right.tag, parentIdentifier)
+                            tree.create_node(tagFromParentAndChildren(parent.tag, left.tag, right.tag), parentIdentifier)
+                            #tree.create_node(parent.tag + " " + left.tag + " " + right.tag, parentIdentifier)
                         else:
-                            tree.create_node(parent.tag + " " + left.tag + " " + right.tag, parentIdentifier, parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
+                            tree.create_node(tagFromParentAndChildren(parent.tag, left.tag, right.tag), parentIdentifier,  parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
+                            #tree.create_node(parent.tag + " " + left.tag + " " + right.tag, parentIdentifier, parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
                 else:
                     #usuń lewe dziecko i podmień rodzica
                     tree.remove_node(left.identifier)
                     tree.remove_node(parentIdentifier)
                     if(parentIdentifier=="root"):
-                        tree.create_node(parent.tag + " " + left.tag, parentIdentifier)
+                        tree.create_node(tagFromParentAndLeftChild(parent.tag,left.tag),parentIdentifier)
+                        #tree.create_node(parent.tag + " " + left.tag, parentIdentifier)
                     else:
-                        tree.create_node(parent.tag + " " + left.tag, parentIdentifier, parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
+                        tree.create_node(tagFromParentAndLeftChild(parent.tag,left.tag),parentIdentifier, parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
+                        #tree.create_node(parent.tag + " " + left.tag, parentIdentifier, parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
                 
 
             i+=1
@@ -112,11 +136,13 @@ def treeToDoc(tree):
         if(len(leavesTab)==1):
             break
 
-    return tree.get_node("root").tag
-        
-        
 
-input = '\sqrt(b^2 - 4ac) + 5ab' 
+    return tree.get_node("root").tag.replace('[minus]', '-')
+        
+        
+#input = '-b\sqrt(-b^(2^(3)) - 4ac) + (-5+a)b + 3 \sin(\\alpha-5exp(1))'
+#input = '\sqrt(b^2 - 4ac) + 5ab' 
+input ='(x+y)/(12-3)'
 
 tree = DTT.docToTree(input)
 print(treeToDoc(tree))
