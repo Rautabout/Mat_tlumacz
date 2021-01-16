@@ -42,9 +42,6 @@ docAddOrChangeBracketsAfter = ["^","_","/"]
 docDeletSpaceBefore = ["\sqrt","\int","\\alpha","\\beta","\gamma","\delta","\pi","\sin","\cos","\\tan","\cot","exp(1)"]
 functions = ['+','-','*','<=','>=','<','>','in','notin','and','or',"/","^","_","sin","cos","tan","cot"]
 
-mathMlStartSymbolsWithNesting = ["<msqrt>","<msup>","<msub>","<mrow>","<mfrac>"]
-mathMlEndSymbolsWithNesting = ["</msqrt>","</msup>","</msub>","</mrow>","</mfrac>"]
-
 
 def findMaxPriority(dictionary):
     maxPriority=0

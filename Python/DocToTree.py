@@ -336,7 +336,7 @@ def findNextSubtree(inputString,maxPriority,dictionary,tree, rootName,parent):
             root = tree.create_node('(',rootName)
         else:
             root = tree.create_node('(',rootName,parent=parent)
-            tree.create_node("None",rootName+'.right',parent=rootName)
+            #tree.create_node("None",rootName+'.right',parent=rootName)
         left = inputString[1:len(inputString)-1]
         try:
            findNextSubtree(left,maxPriority,dictionary,tree,rootName+'.left',rootName)
@@ -363,8 +363,8 @@ def findNextSubtree(inputString,maxPriority,dictionary,tree, rootName,parent):
             except:
                 if right !=None:
                     tree.create_node(right,rootName+'.right',parent=rootName)
-                else:
-                    tree.create_node('None',rootName+'.right',parent=rootName)
+                #else:
+                #    tree.create_node('None',rootName+'.right',parent=rootName)
     return tree
 
     
@@ -381,7 +381,9 @@ def docToTree(inputString):
     # root returns [indexOfRoot,keyofRoot,valueForRoot]
     tree = findNextSubtree(inputString,maxPriority,dictionary,tree,'root','')
   
-    tree.show()
+    #tree.show()
+
+    return tree
 
 
 
