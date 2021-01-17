@@ -134,10 +134,8 @@ def findEndIndexOfActualCurlyBracket(openIndex, input):
     
     for i in range(openIndex+1,len(input)+1):
         if input[i]=='{':
-            print('otwieram')
             openBrackets +=1
         if input[i] == '}':
-            print('zamykam')
             openBrackets -=1
         if openBrackets ==0:
             return i
@@ -175,9 +173,9 @@ def findNextSubtree(inputString,maxPriority,dictionary,tree, rootName,parent):
             # tree.create_node("None",rootName+'.right',parent=rootName)
         left = inputString[1:len(inputString)-1]
         try:
-           findNextSubtree(left,maxPriority,dictionary,tree,rootName+'.left',rootName)
+           findNextSubtree(left,maxPriority,dictionary,tree,rootName+'.L',rootName)
         except:
-            tree.create_node(left,rootName+'.left',parent=rootName)
+            tree.create_node(left,rootName+'.L',parent=rootName)
 
     else:    
         root = findRoot(findProperFragments(inputString),inputString,maxPriority,dictionary)    
@@ -191,16 +189,14 @@ def findNextSubtree(inputString,maxPriority,dictionary,tree, rootName,parent):
                 tree.create_node(root[1],rootName,parent=parent)
             
             try:
-                findNextSubtree(left,maxPriority,dictionary,tree,rootName+'.left',rootName)
+                findNextSubtree(left,maxPriority,dictionary,tree,rootName+'.L',rootName)
             except:
-                tree.create_node(left,rootName+'.left',parent=rootName)
+                tree.create_node(left,rootName+'.L',parent=rootName)
             try:
-                findNextSubtree(right,maxPriority,dictionary,tree,rootName+'.right',rootName)
+                findNextSubtree(right,maxPriority,dictionary,tree,rootName+'.R',rootName)
             except:
                 if right !=None:
-                    tree.create_node(right,rootName+'.right',parent=rootName)
-                # else:
-                #     tree.create_node('None',rootName+'.right',parent=rootName)
+                    tree.create_node(right,rootName+'.R',parent=rootName)
     return tree
 
     
@@ -227,10 +223,6 @@ def textToTree(inputString):
 input = '-b\sqrt{-b^{2^{3}}-4ac}+(-5+a)b+3\sin(\\alpha-5e)' 
 
 tree = textToTree(input)
-
-
-try:
-    subtree = tree.subtree('root.left.left.left')
-    subtree.show
-except:
-    print("nie ma")
+tree.show()
+print(tree.leaves().identifier)
+print(tree.depth())

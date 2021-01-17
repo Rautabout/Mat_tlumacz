@@ -93,13 +93,13 @@ def treeToDoc(tree):
                         if(parentIdentifier=="root"):
                             tree.create_node(parent.tag + " " + left.tag + " " + right.tag, parentIdentifier)
                         else:
-                            tree.create_node(parent.tag + " " + left.tag, parentIdentifier, parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
+                            tree.create_node(parent.tag + " " + left.tag + " " + right.tag, parentIdentifier, parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
                 else:
                     #usuń lewe dziecko i podmień rodzica
                     tree.remove_node(left.identifier)
                     tree.remove_node(parentIdentifier)
                     if(parentIdentifier=="root"):
-                        tree.create_node(parent.tag + " " + left.tag + " " + right.tag, parentIdentifier)
+                        tree.create_node(parent.tag + " " + left.tag, parentIdentifier)
                     else:
                         tree.create_node(parent.tag + " " + left.tag, parentIdentifier, parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
                 
