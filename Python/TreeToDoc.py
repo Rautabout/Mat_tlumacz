@@ -90,7 +90,7 @@ def treeToDoc(tree):
         
 #input = '-b\sqrt(-b^(2^(3)) - 4ac) + (-5+a)b + 3 \sin(\\alpha-5exp(1))'
 #input = '\sqrt(b^2 - 4ac) + 5ab' 
-input ='(x+y)/(12-3)'
+# input ='(x+y)/(12-3)'
 
-tree = DTT.docToTree(input)
-print(treeToDoc(tree))
+# tree = DTT.docToTree(input)
+# print(treeToDoc(tree))

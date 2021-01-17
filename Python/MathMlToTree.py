@@ -52,7 +52,7 @@ def addMultiplySign(inputString, listOfKeys):
             output=inputString[:index] + "<mo>*</mo>\n" +inputString[index:]
             inputString=output
             indexOfNextStart=index
-            index += len(key)
+            index += len(key)+10
 
     print(output)
 
