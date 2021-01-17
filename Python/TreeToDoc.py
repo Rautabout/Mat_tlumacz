@@ -33,58 +33,6 @@ def tagFromParentAndChildren(parentTag, leftTag, rightTag):
         return   leftTag  + dic.symbols[parentTag][0] + "(" + rightTag + ")"
 
 
-
-# leaf.identifier[0:findIndexOfTheLastDot(leaf.identifier)]    <--- tworzenie Rodzica
-# tree.remove_node(leaf.identifier)    <--- usuwanie
-# tree.get_node(leaf.identifier) <--- wzięcie węzła
-# tree.get_node(leaf.identifier).identifier <---- wzięcie wartości węzła
-
-
-# PIERWSZA WERSJA DZIAŁA, JAK SĄ LIŚCIE Z NONE
-
-# def treeToDoc(tree):
-#     tree.show()
-#     while(True):
-#         leavesTab = tree.leaves()
-#         i = 0
-#         while(True):
-#             if(leavesTab[i].identifier.endswith(".left")):
-#                 rightExists = False
-#                 left = leavesTab[i]
-#                 parentIdentifier = left.identifier[0:findIndexOfTheLastDot(left.identifier)]
-#                 parent = tree.get_node(parentIdentifier)
-#                 rightIdentifier = parentIdentifier + ".right"
-
-#                 #if rightIdentifier in leavesTab:
-#                 #    right = tree.get_node(parentIdentifier + ".right")
-
-#                 if(tree.get_node(parentIdentifier + ".right").is_leaf()):
-#                     #Usunięcie dzieci z drzewa
-#                     tree.remove_node(left.identifier)
-#                     if (tree.get_node(parentIdentifier + ".right") in leavesTab):
-#                         rightExists = True
-#                         right = tree.get_node(parentIdentifier + ".right")
-#                         tree.remove_node(rightIdentifier)
-
-#                     #Zamiana rodzica
-#                     tree.remove_node(parentIdentifier)
-#                     if(parentIdentifier=="root"):
-#                         tree.create_node(parent.tag + " " + left.tag + " " + right.tag, parentIdentifier)
-#                     elif (rightExists):
-#                       tree.create_node(parent.tag + " " + left.tag + " " + right.tag, parentIdentifier, parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
-#                     else:
-#                        tree.create_node(parent.tag + " " + left.tag, parentIdentifier, parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
-                    
-
-#             i+=1
-#             if(i == len(leavesTab)):
-#                 tree.show()
-#                 break
-#         if(len(leavesTab)==2):
-#             break
-
-
-#DZIAŁA, GDY NIE MA LIŚCI NONE
 def treeToDoc(tree):
     while(True):
         #Stwórz tablicę z liśćmi

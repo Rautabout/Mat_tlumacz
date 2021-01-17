@@ -173,9 +173,9 @@ def findNextSubtree(inputString,maxPriority,dictionary,tree, rootName,parent):
             # tree.create_node("None",rootName+'.right',parent=rootName)
         left = inputString[1:len(inputString)-1]
         try:
-           findNextSubtree(left,maxPriority,dictionary,tree,rootName+'.L',rootName)
+           findNextSubtree(left,maxPriority,dictionary,tree,rootName+'.left',rootName)
         except:
-            tree.create_node(left,rootName+'.L',parent=rootName)
+            tree.create_node(left,rootName+'.left',parent=rootName)
 
     else:    
         root = findRoot(findProperFragments(inputString),inputString,maxPriority,dictionary)    
@@ -189,14 +189,14 @@ def findNextSubtree(inputString,maxPriority,dictionary,tree, rootName,parent):
                 tree.create_node(root[1],rootName,parent=parent)
             
             try:
-                findNextSubtree(left,maxPriority,dictionary,tree,rootName+'.L',rootName)
+                findNextSubtree(left,maxPriority,dictionary,tree,rootName+'.left',rootName)
             except:
-                tree.create_node(left,rootName+'.L',parent=rootName)
+                tree.create_node(left,rootName+'.left',parent=rootName)
             try:
-                findNextSubtree(right,maxPriority,dictionary,tree,rootName+'.R',rootName)
+                findNextSubtree(right,maxPriority,dictionary,tree,rootName+'.right',rootName)
             except:
                 if right !=None:
-                    tree.create_node(right,rootName+'.R',parent=rootName)
+                    tree.create_node(right,rootName+'.right',parent=rootName)
     return tree
 
     
@@ -211,8 +211,9 @@ def textToTree(inputString):
     inputString = modifyNegativePhrases(inputString)
     inputString = inputString.replace("(",'{')
     inputString = inputString.replace(')','}') 
+    for i in dic.teXJustSymbols:
+        inputString = inputString.replace(dic.symbols[i][1],i)
 
-    # root returns [indexOfRoot,keyofRoot,valueForRoot]
     tree = findNextSubtree(inputString,maxPriority,dictionary,tree,'root','')
   
     return tree
@@ -220,9 +221,8 @@ def textToTree(inputString):
 
 
 
-input = '-b\sqrt{-b^{2^{3}}-4ac}+(-5+a)b+3\sin(\\alpha-5e)' 
+# input = '-b\sqrt{-b^{2^{3}}-4ac}+(-5+a)b+3\sin(\\alpha-5e)' 
 
-tree = textToTree(input)
-tree.show()
-print(tree.leaves().identifier)
-print(tree.depth())
+# tree = textToTree(input)
+# tree.show()
+
