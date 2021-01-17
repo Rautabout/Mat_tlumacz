@@ -4,8 +4,10 @@ from treelib import Node, Tree
 
 
 def stripUnnecessary(inputString):
-    inputString = inputString.lstrip('<math>')
+    inputString = inputString.lstrip('<math>\n')
     inputString = inputString.rstrip('</math>')
+    inputString = inputString.replace("<mrow>\n", "")
+    inputString = inputString.replace("\n</mrow>", "")
     inputString = inputString.replace(" ", "")
     inputString = inputString.replace("<mi>", "")
     inputString = inputString.replace("</mi>", "")
@@ -13,12 +15,51 @@ def stripUnnecessary(inputString):
     inputString = inputString.replace("</mo>", "")
     inputString = inputString.replace("<mn>", "")
     inputString = inputString.replace("</mn>", "")
-    inputString = inputString.strip("\n")
+    inputString = inputString.rstrip("\n")
+    return inputString
+
+
+def addMultiplySign(inputString, listOfKeys):
+    i = 0
+    isPreviousMI = False
+    previousIsNotEmpty = False
+    indexFound = False
+    keyValue = ["</mo>", "</msup>"]
+    indexOfNextStart = 0
+    output=""
+    inputString = inputString.replace(" ", "")
+
+    # print(inputString)
+
+    # for key in listOfKeys:
+    # for m in re.finditer("<mi>",inputString):
+    #     print(m.start(),m.end())
+    #     print(inputString[m.start():m.end()])
+    #     print(inputString[m.start()-1-len(keyValue):m.end()-len(keyValue)])
+    #     index=m.start()
+    #     inputString = inputString[:index] + "<mo>*</mo>\n" + inputString[index:]
+    for key in listOfKeys:
+        index = 0
+        while index < len(inputString):
+            index = inputString.find(key, index)
+            if index == -1:
+                break
+            print(index, index + len(key))
+            print(indexOfNextStart)
+            print(inputString[index:index + len(key)])
+                #for value in keyValue:
+                    #if inputString[index-len(value):index+len(key)-len(value)] != value:
+            output=inputString[:index] + "<mo>*</mo>\n" +inputString[index:]
+            inputString=output
+            indexOfNextStart=index
+            index += len(key)
+
+    print(output)
+
     return inputString
 
 
 def findNestedSubStrings(inputString):
-    inputString = stripUnnecessary(inputString)
     print(inputString)
     for symbol in dic.mathMlStartSymbolsWithNesting + dic.mathMlEndSymbolsWithNesting:
         print(symbol)
@@ -29,8 +70,15 @@ def findNestedSubStrings(inputString):
 
 
 def mathMlToTree(inputString):
-    tree=Tree()
-    findNestedSubStrings(inputString)
+    tree = Tree()
+    dictionary = dic.symbols
+    maxPriority = dic.findMaxPriority(dictionary)
+    inputString = addMultiplySign(inputString, dic.mathMlSymbolsWithUndercoverMultiplySign)
+    inputString = stripUnnecessary(inputString)
+    # print(inputString)
+
+    # findNestedSubStrings(inputString)
+
 
 input = """<math>
     <mo>-</mo>
