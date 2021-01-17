@@ -14,17 +14,24 @@ def findIndexOfTheLastDot(inputString):
     return index
 
 def tagFromParentAndLeftChild(parentTag, leftTag):
-    if parentTag in dic.teXJustSymbols:
-        return dic.symbols[parentTag][0]
-    elif(parentTag=='sqrt'):
+    if(leftTag in dic.teXJustSymbols):
+        leftTag = dic.symbols[leftTag][0]
+
+    if(parentTag=='sqrt'):
         return dic.symbols[parentTag][0] + "(" + leftTag + ")"
     elif(parentTag=='('):
         return "(" + leftTag + ")"
     else:
+        print("jestem" + dic.symbols[parentTag][0])
         return dic.symbols[parentTag][0] + leftTag
 
 
 def tagFromParentAndChildren(parentTag, leftTag, rightTag):
+    if(leftTag in dic.teXJustSymbols):
+        leftTag = dic.symbols[leftTag][0]
+    if(rightTag in dic.teXJustSymbols):
+        rightTag = dic.symbols[rightTag][0]
+
     if parentTag in dic.teXChildsWithoutBrackets:
         return leftTag + " " + dic.symbols[parentTag][0] + " " + rightTag
     elif parentTag in dic.teXChildsWithBrackets:
@@ -32,59 +39,6 @@ def tagFromParentAndChildren(parentTag, leftTag, rightTag):
     elif parentTag in dic.teXChildsWithRightBracket:
         return   leftTag  + dic.symbols[parentTag][0] + "(" + rightTag + ")"
 
-
-
-# leaf.identifier[0:findIndexOfTheLastDot(leaf.identifier)]    <--- tworzenie Rodzica
-# tree.remove_node(leaf.identifier)    <--- usuwanie
-# tree.get_node(leaf.identifier) <--- wzięcie węzła
-# tree.get_node(leaf.identifier).identifier <---- wzięcie wartości węzła
-
-
-# PIERWSZA WERSJA DZIAŁA, JAK SĄ LIŚCIE Z NONE
-
-# def treeToDoc(tree):
-#     tree.show()
-#     while(True):
-#         leavesTab = tree.leaves()
-#         i = 0
-#         while(True):
-#             if(leavesTab[i].identifier.endswith(".left")):
-#                 rightExists = False
-#                 left = leavesTab[i]
-#                 parentIdentifier = left.identifier[0:findIndexOfTheLastDot(left.identifier)]
-#                 parent = tree.get_node(parentIdentifier)
-#                 rightIdentifier = parentIdentifier + ".right"
-
-#                 #if rightIdentifier in leavesTab:
-#                 #    right = tree.get_node(parentIdentifier + ".right")
-
-#                 if(tree.get_node(parentIdentifier + ".right").is_leaf()):
-#                     #Usunięcie dzieci z drzewa
-#                     tree.remove_node(left.identifier)
-#                     if (tree.get_node(parentIdentifier + ".right") in leavesTab):
-#                         rightExists = True
-#                         right = tree.get_node(parentIdentifier + ".right")
-#                         tree.remove_node(rightIdentifier)
-
-#                     #Zamiana rodzica
-#                     tree.remove_node(parentIdentifier)
-#                     if(parentIdentifier=="root"):
-#                         tree.create_node(parent.tag + " " + left.tag + " " + right.tag, parentIdentifier)
-#                     elif (rightExists):
-#                       tree.create_node(parent.tag + " " + left.tag + " " + right.tag, parentIdentifier, parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
-#                     else:
-#                        tree.create_node(parent.tag + " " + left.tag, parentIdentifier, parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
-                    
-
-#             i+=1
-#             if(i == len(leavesTab)):
-#                 tree.show()
-#                 break
-#         if(len(leavesTab)==2):
-#             break
-
-
-#DZIAŁA, GDY NIE MA LIŚCI NONE
 def treeToDoc(tree):
     while(True):
         #Stwórz tablicę z liśćmi
@@ -113,21 +67,17 @@ def treeToDoc(tree):
                         tree.remove_node(parentIdentifier)
                         if(parentIdentifier=="root"):
                             tree.create_node(tagFromParentAndChildren(parent.tag, left.tag, right.tag), parentIdentifier)
-                            #tree.create_node(parent.tag + " " + left.tag + " " + right.tag, parentIdentifier)
                         else:
                             tree.create_node(tagFromParentAndChildren(parent.tag, left.tag, right.tag), parentIdentifier,  parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
-                            #tree.create_node(parent.tag + " " + left.tag + " " + right.tag, parentIdentifier, parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
                 else:
                     #usuń lewe dziecko i podmień rodzica
                     tree.remove_node(left.identifier)
                     tree.remove_node(parentIdentifier)
                     if(parentIdentifier=="root"):
                         tree.create_node(tagFromParentAndLeftChild(parent.tag,left.tag),parentIdentifier)
-                        #tree.create_node(parent.tag + " " + left.tag, parentIdentifier)
                     else:
                         tree.create_node(tagFromParentAndLeftChild(parent.tag,left.tag),parentIdentifier, parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
-                        #tree.create_node(parent.tag + " " + left.tag, parentIdentifier, parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
-                
+                        
 
             i+=1
             if(i == len(leavesTab)):
@@ -142,7 +92,8 @@ def treeToDoc(tree):
         
 #input = '-b\sqrt(-b^(2^(3)) - 4ac) + (-5+a)b + 3 \sin(\\alpha-5exp(1))'
 #input = '\sqrt(b^2 - 4ac) + 5ab' 
-input ='(x+y)/(12-3)'
+#input ='(x+y)/(12-3)'
+#input = "2+3_3 - (x)/(( x)+1) + y/x - 1/( 2+3) + \sqrt( \sqrt( 12x)y )"
 
-tree = DTT.docToTree(input)
-print(treeToDoc(tree))
+#tree = DTT.docToTree(input)
+#print(treeToDoc(tree))
