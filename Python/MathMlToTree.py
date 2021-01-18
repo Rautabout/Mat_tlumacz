@@ -3,19 +3,132 @@ import re
 from treelib import Node, Tree
 
 
+def modifyNegativePhrase(inputString):
+    output = ''
+    indexOfNextStart = 0
+    minusLength = len("<mo>-")
+
+    for i in range(len(inputString)):
+        if inputString[i:(i + minusLength)] == "<mo>-":
+            if i - 1 == -1 or inputString[i - 1] == "(" or inputString[i - 1] == "{":
+                output += inputString[indexOfNextStart:i] + '[minus]'
+                indexOfNextStart = i + minusLength
+    if (indexOfNextStart < len(inputString)):
+        output += inputString[indexOfNextStart:]
+    return output
+
+
+def changeClosingOfSpecial(inputString, endSymbols):
+    output = ''
+    indexOfNextStart = 0
+
+    for i in range(len(inputString)):
+        for keyValue in endSymbols:
+            if inputString[i:(i + len(keyValue))] == keyValue:
+                output += inputString[indexOfNextStart:i] + '}'
+                indexOfNextStart = i + len(keyValue)
+    if (indexOfNextStart < len(inputString)):
+        output += inputString[indexOfNextStart:]
+    return output
+
+
+def changeOpeningOfSpecial(inputString, openSymbols):
+    output = ''
+    indexOfNextStart = 0
+
+    for i in range(len(inputString)):
+        for keyValue in openSymbols:
+            if inputString[i:(i + len(keyValue))] == keyValue:
+                output += inputString[indexOfNextStart:i] + keyValue[0:len(keyValue) - 1] + '{'
+                indexOfNextStart = i + len(keyValue)
+    if (indexOfNextStart < len(inputString)):
+        output += inputString[indexOfNextStart:]
+    return output
+
+def addSpaceInsteadOfSpecial(inputString,keyValue):
+    output = ''
+    indexOfNextStart = 0
+
+    for i in range(len(inputString)):
+        if inputString[i:(i + len(keyValue))] == keyValue:
+            output += inputString[indexOfNextStart:i] + ' '
+            indexOfNextStart = i + len(keyValue)
+    if indexOfNextStart < len(inputString):
+        output += inputString[indexOfNextStart:]
+
+    return output
+
+def findObjectAfterSpecial(inputString):
+    indexOfSpace=inputString.find(' ')
+    indexOfFirstAfterNext=inputString.find('<',indexOfSpace+2)
+    if ' ' in inputString[indexOfSpace:indexOfFirstAfterNext]:
+        lenOfObjectAfter = indexOfFirstAfterNext - indexOfSpace - 2
+    else:
+        lenOfObjectAfter = indexOfFirstAfterNext - indexOfSpace - 1
+    return lenOfObjectAfter
+
+
+def swapPlacesOfSup(inputString):
+    keyValue="<msup>"
+    firstOutput = addSpaceInsteadOfSpecial(inputString,keyValue)
+    if ' ' in firstOutput:
+        output=''
+        # print(firstOutput)
+        index = 0
+        while index < len(firstOutput):
+            lenOfObject = findObjectAfterSpecial(firstOutput)
+            index=firstOutput.find(' ',index)
+            if index == -1:
+                break
+            output=firstOutput[:index]+firstOutput[(index+1):(index+lenOfObject+1)]+"^{"+firstOutput[(index+lenOfObject+1):]
+            firstOutput=output
+            # print(index)
+            # print(lenOfObject)
+            index+=1+len("^{")-1
+
+        # print(output)
+        return output
+    else:
+        return inputString
+
+
+
+def swapPlacesOfSub(inputString):
+    keyValue="<msub>"
+    firstOutput = addSpaceInsteadOfSpecial(inputString,keyValue)
+    if ' ' in inputString:
+        output=''
+        index = 0
+        while index < len(firstOutput):
+            lenOfObject = findObjectAfterSpecial(firstOutput)
+            index=firstOutput.find(' ',index)
+            if index == -1:
+                break
+            output=firstOutput[:index]+firstOutput[(index+1):(index+lenOfObject+1)]+"^{"+firstOutput[(index+lenOfObject+1):]
+            firstOutput=output
+            index+=1+len("^{")-1
+        return output
+    else:
+        return inputString
+
+
 def stripUnnecessary(inputString):
+    symbolsToSwitchPlace = ["<msub>", "<msup>"]
     inputString = inputString.lstrip('<math>\n')
-    inputString = inputString.rstrip('</math>')
     inputString = inputString.replace("<mrow>\n", "")
-    inputString = inputString.replace("\n</mrow>", "")
     inputString = inputString.replace(" ", "")
-    inputString = inputString.replace("<mi>", "")
-    inputString = inputString.replace("</mi>", "")
-    inputString = inputString.replace("<mo>", "")
-    inputString = inputString.replace("</mo>", "")
-    inputString = inputString.replace("<mn>", "")
-    inputString = inputString.replace("</mn>", "")
-    inputString = inputString.rstrip("\n")
+    inputString = inputString.replace("\n", "")
+    # inputString = inputString.replace("<mi>", "")
+    # inputString = inputString.replace("<mo>", "")
+    # inputString = inputString.replace("<mn>", "")
+    inputString = changeClosingOfSpecial(inputString, dic.mathMlEndSymbolsWithNesting)
+    inputString = re.sub('</[^>]+>', '', inputString)
+    inputString = swapPlacesOfSup(inputString)
+    inputString = swapPlacesOfSub(inputString)
+    inputString = changeOpeningOfSpecial(inputString, dic.mathMlStartSymbolsWithNesting)
+    inputString = modifyNegativePhrase(inputString)
+    print(inputString)
+
     return inputString
 
 
@@ -24,35 +137,26 @@ def addMultiplySign(inputString, listOfKeys):
     isPreviousMI = False
     previousIsNotEmpty = False
     indexFound = False
-    keyValue = ["</mo>", "</msup>"]
-    indexOfNextStart = 0
-    output=""
+    keyValue = ["</mo>", "</msup>", "<msup>", "</msub>", "<msub>"]
+    vvalue = "</mo>"
+    output = ""
     inputString = inputString.replace(" ", "")
 
     # print(inputString)
-
-    # for key in listOfKeys:
-    # for m in re.finditer("<mi>",inputString):
-    #     print(m.start(),m.end())
-    #     print(inputString[m.start():m.end()])
-    #     print(inputString[m.start()-1-len(keyValue):m.end()-len(keyValue)])
-    #     index=m.start()
-    #     inputString = inputString[:index] + "<mo>*</mo>\n" + inputString[index:]
     for key in listOfKeys:
         index = 0
         while index < len(inputString):
             index = inputString.find(key, index)
             if index == -1:
                 break
-            print(index, index + len(key))
-            print(indexOfNextStart)
-            print(inputString[index:index + len(key)])
-                #for value in keyValue:
-                    #if inputString[index-len(value):index+len(key)-len(value)] != value:
-            output=inputString[:index] + "<mo>*</mo>\n" +inputString[index:]
-            inputString=output
-            indexOfNextStart=index
-            index += len(key)
+            # print(index, index + len(key))
+            # print(inputString[index:index + len(key)])
+            # for value in keyValue:
+            # print(inputString[index-1-len(value):index+len(key)-len(value)])
+            if inputString[(index - 1 - len(vvalue)):(index + len(key) - len(vvalue))] != vvalue:
+                output = inputString[:index] + "<mo>*</mo>\n" + inputString[index:]
+            inputString = output
+            index += len(key) + len("<mo>*</mo>\n")
 
     print(output)
 
@@ -73,9 +177,9 @@ def mathMlToTree(inputString):
     tree = Tree()
     dictionary = dic.symbols
     maxPriority = dic.findMaxPriority(dictionary)
-    inputString = addMultiplySign(inputString, dic.mathMlSymbolsWithUndercoverMultiplySign)
+    # inputString = addMultiplySign(inputString, dic.mathMlSymbolsWithUndercoverMultiplySign)
     inputString = stripUnnecessary(inputString)
-    # print(inputString)
+    print(inputString)
 
     # findNestedSubStrings(inputString)
 
@@ -109,7 +213,7 @@ input = """<math>
     <mn>3</mn>
     <mi>sin</mi>
     <mo>(</mo>
-    <mi>alpha</mi>
+    <mo>&alpha;</mo>
     <mo>-</mo>
     <mn>5</mn>
     <mi>e</mi>
