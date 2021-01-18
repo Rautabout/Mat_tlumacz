@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using IO_Mat_tlumacz.Konsola;
 using IronPython.Hosting;
 using System.IO;
+using Microsoft.Scripting.Hosting;
 
 namespace IO_Mat_tlumacz.ViewModel
 {
@@ -58,13 +59,19 @@ namespace IO_Mat_tlumacz.ViewModel
         private void TranslateProcedure()
         {
             var engine = Python.CreateEngine();
-            var source = engine.CreateScriptSourceFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Python\\konwertuj.py"));
-            //var source = engine.CreateScriptSourceFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Python\\konwertuj.py"));
-            var scope = engine.CreateScope();
-            source.Execute(scope);
-            var converterInstance = engine.Operations.CreateInstance(scope.GetVariable("converter"));
 
-            var output = converterInstance.convert(langCodes[panelL.SelectedLanguage], langCodes[panelR.SelectedLanguage], PanelL.CodeText);
+            var searchPaths = engine.GetSearchPaths();
+            searchPaths.Add("..\\..\\Python");
+            engine.SetSearchPaths(searchPaths);
+            //var source = engine.CreateScriptSourceFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Python\\__pycache__\\konwertuj.py"));
+            //var source = engine.CreateScriptSourceFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Python\\konwertuj.py"));
+            ScriptScope scope = engine.CreateScope();
+            engine.ExecuteFile("..\\..\\Python\\konwertuj.py");
+            
+           
+            dynamic convertFunction = scope.GetVariable("convert");
+
+            var output = convertFunction(langCodes[panelL.SelectedLanguage], langCodes[panelR.SelectedLanguage], PanelL.CodeText);
 
 
             panelR.CodeText = output;
