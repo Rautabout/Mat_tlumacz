@@ -376,12 +376,16 @@ def docToTree(inputString):
     inputString = prepareText(inputString)
     inputString = addMultiplySign(inputString,dictionary,dic.docSymbolsWithUndercoverMultiplySign)
     inputString = modifyNegativePhrases(inputString)
+
+    for i in dic.teXJustSymbols:
+        inputString = inputString.replace(dic.symbols[i][0],i)
+
     inputString = inputString.replace("(",'{')
     inputString = inputString.replace(')','}') 
-    # root returns [indexOfRoot,keyofRoot,valueForRoot]
+    
     tree = findNextSubtree(inputString,maxPriority,dictionary,tree,'root','')
   
-    #tree.show()
+    # tree.show()
 
     return tree
 
