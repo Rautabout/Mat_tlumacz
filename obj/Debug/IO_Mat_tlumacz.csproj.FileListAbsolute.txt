@@ -81,29 +81,3 @@ D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz.P
 D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz.csproj.GenerateResource.cache
 D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz.csproj.CoreCompileInputs.cache
 D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz.csproj.CopyComplete
-C:\Users\Karolina\source\repos\Mat_tlumacz\bin\Debug\IO_Mat_tlumacz.exe.config
-C:\Users\Karolina\source\repos\Mat_tlumacz\bin\Debug\IO_Mat_tlumacz.exe
-C:\Users\Karolina\source\repos\Mat_tlumacz\bin\Debug\IO_Mat_tlumacz.pdb
-C:\Users\Karolina\source\repos\Mat_tlumacz\bin\Debug\IronPython.dll
-C:\Users\Karolina\source\repos\Mat_tlumacz\bin\Debug\IronPython.Modules.dll
-C:\Users\Karolina\source\repos\Mat_tlumacz\bin\Debug\IronPython.SQLite.dll
-C:\Users\Karolina\source\repos\Mat_tlumacz\bin\Debug\IronPython.Wpf.dll
-C:\Users\Karolina\source\repos\Mat_tlumacz\bin\Debug\Microsoft.Dynamic.dll
-C:\Users\Karolina\source\repos\Mat_tlumacz\bin\Debug\Microsoft.Scripting.dll
-C:\Users\Karolina\source\repos\Mat_tlumacz\bin\Debug\Microsoft.Scripting.Metadata.dll
-C:\Users\Karolina\source\repos\Mat_tlumacz\bin\Debug\IronPython.xml
-C:\Users\Karolina\source\repos\Mat_tlumacz\bin\Debug\IronPython.Modules.xml
-C:\Users\Karolina\source\repos\Mat_tlumacz\bin\Debug\IronPython.SQLite.xml
-C:\Users\Karolina\source\repos\Mat_tlumacz\bin\Debug\IronPython.Wpf.xml
-C:\Users\Karolina\source\repos\Mat_tlumacz\bin\Debug\Microsoft.Dynamic.xml
-C:\Users\Karolina\source\repos\Mat_tlumacz\bin\Debug\Microsoft.Scripting.xml
-C:\Users\Karolina\source\repos\Mat_tlumacz\bin\Debug\Microsoft.Scripting.Metadata.xml
-C:\Users\Karolina\source\repos\Mat_tlumacz\obj\Debug\IO_Mat_tlumacz_Content.g.cs
-C:\Users\Karolina\source\repos\Mat_tlumacz\obj\Debug\CodeView.baml
-C:\Users\Karolina\source\repos\Mat_tlumacz\obj\Debug\MainWindow.baml
-C:\Users\Karolina\source\repos\Mat_tlumacz\obj\Debug\IO_Mat_tlumacz.g.resources
-C:\Users\Karolina\source\repos\Mat_tlumacz\obj\Debug\IO_Mat_tlumacz.Properties.labels_ENG.resources
-C:\Users\Karolina\source\repos\Mat_tlumacz\obj\Debug\IO_Mat_tlumacz.Properties.labels_PL.resources
-C:\Users\Karolina\source\repos\Mat_tlumacz\obj\Debug\IO_Mat_tlumacz.csproj.GenerateResource.cache
-C:\Users\Karolina\source\repos\Mat_tlumacz\obj\Debug\IO_Mat_tlumacz.csproj.CoreCompileInputs.cache
-C:\Users\Karolina\source\repos\Mat_tlumacz\obj\Debug\IO_Mat_tlumacz.csproj.CopyComplete
