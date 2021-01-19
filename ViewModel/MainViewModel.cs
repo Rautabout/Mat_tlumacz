@@ -66,7 +66,7 @@ namespace IO_Mat_tlumacz.ViewModel
             //var source = engine.CreateScriptSourceFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Python\\__pycache__\\konwertuj.py"));
             //var source = engine.CreateScriptSourceFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Python\\konwertuj.py"));
             ScriptScope scope = engine.CreateScope();
-            engine.ExecuteFile("..\\..\\Python\\konwertuj.py");
+            engine.ExecuteFile("..\\..\\Python\\konwertuj.py",scope);
             
            
             dynamic convertFunction = scope.GetVariable("convert");

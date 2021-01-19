@@ -55,6 +55,7 @@ mathMlSymbolsWithBracket=["/"]
 
 
 
+
 def findMaxPriority(dictionary):
     maxPriority = 0
 
