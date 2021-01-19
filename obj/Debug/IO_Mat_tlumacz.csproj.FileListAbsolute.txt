@@ -55,3 +55,29 @@ C:\Users\Karolina\Source\Repos\Mat_tlumacz\obj\Debug\IO_Mat_tlumacz_MarkupCompil
 C:\Users\Karolina\Source\Repos\Mat_tlumacz\obj\Debug\IO_Mat_tlumacz.exe
 C:\Users\Karolina\Source\Repos\Mat_tlumacz\obj\Debug\IO_Mat_tlumacz.pdb
 >>>>>>> Karolina
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\IO_Mat_tlumacz.exe.config
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\IO_Mat_tlumacz.exe
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\IO_Mat_tlumacz.pdb
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\IronPython.dll
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\IronPython.Modules.dll
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\IronPython.SQLite.dll
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\IronPython.Wpf.dll
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\Microsoft.Dynamic.dll
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\Microsoft.Scripting.dll
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\Microsoft.Scripting.Metadata.dll
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\IronPython.xml
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\IronPython.Modules.xml
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\IronPython.SQLite.xml
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\IronPython.Wpf.xml
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\Microsoft.Dynamic.xml
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\Microsoft.Scripting.xml
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\Microsoft.Scripting.Metadata.xml
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz_Content.g.cs
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\CodeView.baml
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\MainWindow.baml
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz.g.resources
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz.Properties.labels_ENG.resources
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz.Properties.labels_PL.resources
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz.csproj.GenerateResource.cache
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz.csproj.CoreCompileInputs.cache
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz.csproj.CopyComplete
