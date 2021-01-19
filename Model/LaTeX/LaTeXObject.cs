@@ -10,7 +10,7 @@ namespace IO_Mat_tlumacz.Model.LaTeX
     class LaTeXObjects : MathLanguage
     {
         int longest_code;
-        Dictionary<string, string[]> dictionary = new System.Collections.Generic.Dictionary<string, string[]>();
+        readonly Dictionary<string, string[]> dictionary = new System.Collections.Generic.Dictionary<string, string[]>();
         private static string Reverse(string text)
         {
             char[] output = new char[text.Length];
@@ -38,6 +38,7 @@ namespace IO_Mat_tlumacz.Model.LaTeX
         {
             List<MathObject> equation = new List<MathObject>();
             int progress = 0;
+
             for(int i = 0; i < text.Length; i++)
             {
                
@@ -45,6 +46,17 @@ namespace IO_Mat_tlumacz.Model.LaTeX
 
 
             return equation.ToArray();
+        }
+
+        public override List<MathObject> Parse(string code)
+        {
+            List<MathObject> firstpass;
+
+            var stack = new List<MathObject>();
+            var output = new List<MathObject>();
+            
+
+            return output;
         }
     }
 }

@@ -43,6 +43,12 @@ docDeletSpaceBefore = ["\sqrt","\int","\\alpha","\\beta","\gamma","\delta","\pi"
 functions = ['+','-','*','<=','>=','<','>','in','notin','and','or',"/","^","_","sin","cos","tan","cot"]
 
 
+mathMlStartSymbolsWithNesting = ["<msqrt>","<msup>","<msub>","<mrow>","<mfrac>"]
+mathMlEndSymbolsWithNesting = ["</msqrt>","</msup>","</msub>","</mrow>","</mfrac>"]
+mathMlSymbolsWithUndercoverMultiplySign= ["<msqrt>","<mi>","<mo>&int;</mo>","<mo>&alpha;</mo>","<mo>&beta;</mo>","<mo>&gamma;</mo>","<mo>&delta;</mo>"]
+
+
+
 def findMaxPriority(dictionary):
     maxPriority=0
 
