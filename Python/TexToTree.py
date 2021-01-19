@@ -224,7 +224,7 @@ def textToTree(inputString):
 
 
 
-input = '-b\sqrt{-b^{2^{3}}-4ac}+(-5+a)b+3\sin(\\alpha-5e)' #Pamiętać, żeby naprawić kwestię -b-4ac
+#input = '-b\sqrt{-b^{2^{3}}-4ac}+(-5+a)b+3\sin(\\alpha-5e)' #Pamiętać, żeby naprawić kwestię -b-4ac
 
-textToTree(input)
+#textToTree(input)
 
