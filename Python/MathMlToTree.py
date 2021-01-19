@@ -11,7 +11,7 @@ def modifyNegativePhrase(inputString):
     for i in range(len(inputString)):
         if inputString[i:(i + minusLength)] == "-":
             if i - 1 == -1 or inputString[i - 1] == "(" or inputString[i - 1] == "{":
-                output += inputString[indexOfNextStart:i] + '[mnus]'
+                output += inputString[indexOfNextStart:i] + '[minus]'
                 indexOfNextStart = i + minusLength
     if (indexOfNextStart < len(inputString)):
         output += inputString[indexOfNextStart:]
@@ -268,7 +268,7 @@ def findChilds(inputString, root):
         left = inputString[:root[0]]
         right = inputString[root[0] + 2:-1]
     if root[1] in dic.mathMlSymbolsWithBrackets:
-        left = inputString[root[0] + len(root[2]) :-1]
+        left = inputString[root[0] + len(root[2]) + 1 :-1]
         right = None
     if root[1] in dic.mathMlFunctions:
         left = inputString[root[0] + len(root[2]): ]
@@ -285,7 +285,6 @@ def findNextSubtree(inputString, maxPriority, dictionary, tree, rootName, parent
             root = tree.create_node('(', rootName)
         else:
             root = tree.create_node('(', rootName, parent=parent)
-            tree.create_node("None", rootName + '.right', parent=rootName)
         left = inputString[1:len(inputString) - 1]
         try:
             findNextSubtree(left, maxPriority, dictionary, tree, rootName + '.left', rootName)
@@ -312,8 +311,7 @@ def findNextSubtree(inputString, maxPriority, dictionary, tree, rootName, parent
             except:
                 if right != None:
                     tree.create_node(right, rootName + '.right', parent=rootName)
-                else:
-                    tree.create_node('None', rootName + '.right', parent=rootName)
+
     return tree
 
 
