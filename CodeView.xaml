@@ -15,9 +15,9 @@
 
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="6*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="8*" MinWidth="100"/>
+                <ColumnDefinition Width="*" MinWidth="50" MaxWidth="75"/>
+                <ColumnDefinition Width="*" MinWidth="50" MaxWidth="75"/>
             </Grid.ColumnDefinitions>
             <ComboBox x:Name="LanguagePick" x:FieldModifier="private"
                 Grid.Column="0" HorizontalAlignment="Stretch" Margin="8,8,8,8" 
