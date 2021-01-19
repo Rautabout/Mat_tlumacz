@@ -1,4 +1,4 @@
-import TexToTree
+﻿import TexToTree
 import dictionary as dic
 import treelib
 
