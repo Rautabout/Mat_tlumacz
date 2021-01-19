@@ -134,10 +134,8 @@ def findEndIndexOfActualCurlyBracket(openIndex, input):
     
     for i in range(openIndex+1,len(input)+1):
         if input[i]=='{':
-            print('otwieram')
             openBrackets +=1
         if input[i] == '}':
-            print('zamykam')
             openBrackets -=1
         if openBrackets ==0:
             return i
@@ -172,7 +170,7 @@ def findNextSubtree(inputString,maxPriority,dictionary,tree, rootName,parent):
             root = tree.create_node('(',rootName)
         else:
             root = tree.create_node('(',rootName,parent=parent)
-            tree.create_node("None",rootName+'.right',parent=rootName)
+            # tree.create_node("None",rootName+'.right',parent=rootName)
         left = inputString[1:len(inputString)-1]
         try:
            findNextSubtree(left,maxPriority,dictionary,tree,rootName+'.left',rootName)
@@ -199,13 +197,11 @@ def findNextSubtree(inputString,maxPriority,dictionary,tree, rootName,parent):
             except:
                 if right !=None:
                     tree.create_node(right,rootName+'.right',parent=rootName)
-                else:
-                    tree.create_node('None',rootName+'.right',parent=rootName)
     return tree
 
     
 
-def textToTree(inputString):
+def texToTree(inputString):
     tree = Tree()
     dictionary = dic.symbols
     inputString = inputString.replace(" ","")
@@ -215,8 +211,18 @@ def textToTree(inputString):
     inputString = modifyNegativePhrases(inputString)
     inputString = inputString.replace("(",'{')
     inputString = inputString.replace(')','}') 
-    print(inputString)
-    # root returns [indexOfRoot,keyofRoot,valueForRoot]
+    for i in dic.teXJustSymbols:
+        inputString = inputString.replace(dic.symbols[i][1],i)
+
     tree = findNextSubtree(inputString,maxPriority,dictionary,tree,'root','')
   
-    tree.show()
+    return tree
+
+
+
+
+# input = '-b\sqrt{-b^{2^{3}}-4ac}+(-5+a)b+3\sin(\\alpha-5e)' 
+
+# tree = textToTree(input)
+# tree.show()
+

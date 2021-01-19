@@ -52,22 +52,33 @@ namespace IO_Mat_tlumacz.ViewModel
             PanelR.LanguageList = langNames.ToArray();
 
 
-            panelL.CodeText = "x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}";
+            panelL.CodeText = "\\frac{-b\\sqrt{b^2-4ac}}{2a}";
 
         }
 
         private void TranslateProcedure()
         {
-            var engine = Python.CreateEngine();
-            var source = engine.CreateScriptSourceFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "konwertuj.py"));
-            //var source = engine.CreateScriptSourceFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Python\\konwertuj.py"));
-            var scope = engine.CreateScope();
-            source.Execute(scope);
-            var converterInstance = engine.Operations.CreateInstance(scope.GetVariable("converter"));
+            string python = "python.exe";
+            string myPythonApp = "konwertuj.py";
+            ProcessStartInfo myProcessStartInfo = new ProcessStartInfo(python);
 
-            var output = converterInstance.convert(langCodes[panelL.SelectedLanguage], langCodes[panelR.SelectedLanguage], PanelL.CodeText);
+            myProcessStartInfo.UseShellExecute = false;
+            myProcessStartInfo.RedirectStandardOutput = true;
 
-            panelR.CodeText = output;
+            myProcessStartInfo.Arguments = myPythonApp + " " + langCodes[panelL.SelectedLanguage] + " " + langCodes[panelR.SelectedLanguage] + " " + PanelL.CodeText;
+
+            Process myProcess = new Process();
+            myProcess.StartInfo = myProcessStartInfo; 
+            myProcess.Start();
+
+            StreamReader myStreamReader = myProcess.StandardOutput;
+            string myString = myStreamReader.ReadLine();
+
+            myProcess.WaitForExit();
+            myProcess.Close();
+
+            panelR.CodeText = myString;
+
         }
     }
 }

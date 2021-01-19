@@ -4,7 +4,7 @@ from treelib import Node, Tree
 
 def prepareText(input):
     inputString = input.replace("\n","")
-    inputString =" " + inputString + " "
+    inputString =" " + inputString + "   "
     tempString = inputString
     testString = ""
     endingIndex=0
@@ -393,10 +393,10 @@ def docToTree(inputString):
 
 
 #input = '\sqrt(b^2 - 4ac) + 5ab' 
-input = '-b\sqrt(-b^(2^(3)) - 4ac) + (-5+a)b + 3 \sin(\\alpha-5exp(1))'
+#input = '-b\sqrt(-b^(2^(3)) - 4ac) + (-5+a)b + 3 \sin(\\alpha-5exp(1))'
 #input ='(x+y)/(12-3)'
 
-docToTree(input)
+#docToTree(input)
 
 #print(prepareText("2^( 2^( 2 ) ) + 11^( 457^2) + 12_(152) - 13_45 + 15^789_12 "))
 #print(prepareText("2+3-\sqrt 12x"))
