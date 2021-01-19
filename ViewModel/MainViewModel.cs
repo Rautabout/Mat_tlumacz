@@ -9,7 +9,7 @@ using System.Windows.Controls;
 using IO_Mat_tlumacz.Konsola;
 using IronPython.Hosting;
 using System.IO;
-using Microsoft.Scripting.Hosting;
+using System.Diagnostics;
 
 namespace IO_Mat_tlumacz.ViewModel
 {
@@ -52,29 +52,34 @@ namespace IO_Mat_tlumacz.ViewModel
             PanelR.LanguageList = langNames.ToArray();
 
 
-            panelL.CodeText = "x=\\frac{-b\\pm\\sqrt{b^2-4ac}}{2a}";
+            panelL.CodeText = "\\frac{-b\\sqrt{b^{2}-4ac}}{2a}";
 
         }
 
         private void TranslateProcedure()
         {
-            var engine = Python.CreateEngine();
 
-            var searchPaths = engine.GetSearchPaths();
-            searchPaths.Add("..\\..\\Python");
-            engine.SetSearchPaths(searchPaths);
-            //var source = engine.CreateScriptSourceFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\Python\\__pycache__\\konwertuj.py"));
-            //var source = engine.CreateScriptSourceFromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Python\\konwertuj.py"));
-            ScriptScope scope = engine.CreateScope();
-            engine.ExecuteFile("..\\..\\Python\\konwertuj.py",scope);
-            
-           
-            dynamic convertFunction = scope.GetVariable("convert");
+            string python = "python.exe";
+            string myPythonApp = "konwertuj.py";
+            ProcessStartInfo myProcessStartInfo = new ProcessStartInfo(python);
 
-            var output = convertFunction(langCodes[panelL.SelectedLanguage], langCodes[panelR.SelectedLanguage], PanelL.CodeText);
+            myProcessStartInfo.UseShellExecute = false;
+            myProcessStartInfo.RedirectStandardOutput = true;
 
+            myProcessStartInfo.Arguments = myPythonApp + " " + langCodes[panelL.SelectedLanguage] + " " + langCodes[panelR.SelectedLanguage] + " " + PanelL.CodeText;
 
-            panelR.CodeText = output;
+            Process myProcess = new Process();
+            myProcess.StartInfo = myProcessStartInfo; 
+            myProcess.Start();
+
+            StreamReader myStreamReader = myProcess.StandardOutput;
+            string myString = myStreamReader.ReadLine();
+
+            myProcess.WaitForExit();
+            myProcess.Close();
+
+            panelR.CodeText = myString;
+
         }
     }
 }

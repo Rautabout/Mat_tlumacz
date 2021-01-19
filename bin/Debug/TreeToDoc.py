@@ -1,8 +1,6 @@
-﻿import TexToTree
-import dictionary as dic
-import treelib
-
-
+import dictionary as dic 
+from treelib import Node, Tree
+import DocToTree as DTT
 
 def findIndexOfTheLastDot(inputString):
     index=-1
@@ -15,34 +13,42 @@ def findIndexOfTheLastDot(inputString):
 
     return index
 
+def tagFromParentAndLeftChild(parentTag, leftTag):
 
-def mergeString(inputString,root,left,right=None):
-    if left in dic.teXJustSymbols:
-        left = inputString=dic.symbols[left][1]
-    if right in dic.teXJustSymbols:
-        right =inputString=dic.symbols[right][1]
-    if root in dic.teXChildsWithoutBrackets:
-        inputString = left+dic.symbols[root][1]+right
-    elif root in dic.teXChildsWithBrackets:
-        inputString=dic.symbols[root][1]+'{'+left+'}{'+right+'}'
-    elif root in dic.teXChildsWithRightBracket:
-        inputString=left+dic.symbols[root][1]+'{'+right+'}'
-    elif root in dic.teXChildWithBracket:
-        inputString = dic.symbols[root][1]+'{'+left+'}'
-    elif root in dic.teXFunctions:
-        inputString=dic.symbols[root][1]+left
-    elif root=='(':
-        inputString='('+left+')'
-    
-    return inputString
+    if(leftTag in dic.teXJustSymbols):
+        leftTag = dic.symbols[leftTag][0]
 
-    
-def treeToTex(tree):
+    if(parentTag=='sqrt'):
+        return dic.symbols[parentTag][0] + "(" + leftTag + ")"
+    elif(parentTag=='('):
+        return "(" + leftTag + ")"
+    else:
+        return dic.symbols[parentTag][0] + leftTag
+
+
+def tagFromParentAndChildren(parentTag, leftTag, rightTag):
+
+    if(leftTag in dic.teXJustSymbols):
+        leftTag = dic.symbols[leftTag][0]
+    if(rightTag in dic.teXJustSymbols):
+        rightTag = dic.symbols[rightTag][0]
+
+
+    if parentTag in dic.teXChildsWithoutBrackets:
+        return leftTag + " " + dic.symbols[parentTag][0] + " " + rightTag
+    elif parentTag in dic.teXChildsWithBrackets:
+        return  "(" + leftTag + ")" + dic.symbols[parentTag][0] + "(" + rightTag + ")"
+    elif parentTag in dic.teXChildsWithRightBracket:
+        return   leftTag  + dic.symbols[parentTag][0] + "(" + rightTag + ")"
+
+
+def treeToDoc(tree):
     while(True):
         #Stwórz tablicę z liśćmi
         leavesTab = tree.leaves()
         i = 0
         while(True):
+            #tree.show()
             #Sprawdzaj kolejne elementy tablicy, czy nie kończą się one ".left"
             if(leavesTab[i].identifier.endswith(".left")):
                 #stwórz lewy liść, identyfikator rodzica, rodzica i prawy identyfikator
@@ -63,18 +69,19 @@ def treeToTex(tree):
                         #podmień rodzica
                         tree.remove_node(parentIdentifier)
                         if(parentIdentifier=="root"):
-                            tree.create_node(mergeString('',parent.tag, left.tag, right.tag), parentIdentifier)
-        
+                            tree.create_node(tagFromParentAndChildren(parent.tag, left.tag, right.tag), parentIdentifier)
                         else:
-                            tree.create_node(mergeString('',parent.tag, left.tag, right.tag), parentIdentifier,  parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
+                            tree.create_node(tagFromParentAndChildren(parent.tag, left.tag, right.tag), parentIdentifier,  parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
                 else:
                     #usuń lewe dziecko i podmień rodzica
                     tree.remove_node(left.identifier)
                     tree.remove_node(parentIdentifier)
                     if(parentIdentifier=="root"):
-                        tree.create_node(mergeString('',parent.tag,left.tag),parentIdentifier)
+                        tree.create_node(tagFromParentAndLeftChild(parent.tag,left.tag),parentIdentifier)
+
                     else:
-                        tree.create_node(mergeString('',parent.tag,left.tag),parentIdentifier, parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])                
+                        tree.create_node(tagFromParentAndLeftChild(parent.tag,left.tag),parentIdentifier, parent.identifier[0:findIndexOfTheLastDot(parent.identifier)])
+                        
 
             i+=1
             if(i == len(leavesTab)):
@@ -85,13 +92,12 @@ def treeToTex(tree):
 
 
     return tree.get_node("root").tag.replace('[minus]', '-')
+        
+        
+#input = '-b\sqrt(-b^(2^(3)) - 4ac) + (-5+a)b + 3 \sin(\\alpha-5exp(1))'
+#input = '\sqrt(b^2 - 4ac) + 5ab' 
+#input ='(x+y)/(12-3)'
 
 
-    
-
-
-# input = '-b\sqrt{-b^{2^{3}}-4ac}+(-5+a)b+3\sin(\\alpha-5e)' 
-
-# tree = TexToTree.textToTree(input)
-# tree.show()
-# print(treeToTex(tree))
+#tree = DTT.docToTree(input)
+#print(treeToDoc(tree))

@@ -4,7 +4,7 @@ from treelib import Node, Tree
 
 def prepareText(input):
     inputString = input.replace("\n","")
-    inputString =" " + inputString + " "
+    inputString =" " + inputString + "   "
     tempString = inputString
     testString = ""
     endingIndex=0
