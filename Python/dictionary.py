@@ -48,7 +48,7 @@ mathMlEndSymbolsWithNesting = ["</msqrt>", "</msup>", "</msub>", "</mrow>", "</m
 mathMlSymbolsWithUndercoverMultiplySign = ["msqrt","mfrac", "&int;", "&alpha;", "&beta;", "&gamma;", "&delta;", "sin", "cos", "tan", "cot", "pi", "e"]
 mathMlChildsWithoutBrackets = ['+', '-', '*', '<=', '>=', '<', '>','in', 'notin', 'and', 'or']
 mathMlChildWithRightBracket=["^","_"]
-mathMlFunctions=["sin", "cos", "tan", "cot","sqrt","int"]
+mathMlFunctions=["sin", "cos", "tan", "cot"]
 mathMlJustSymbols=["alpha", "beta", "gamma", "delta", "pi", "e"]
 mathMlSymbolsWithBrackets=["sqrt","int"]
 mathMlSymbolsWithBracket=["/"]
