@@ -52,12 +52,13 @@ namespace IO_Mat_tlumacz.ViewModel
             PanelR.LanguageList = langNames.ToArray();
 
 
-            panelL.CodeText = "\\frac{-b\\sqrt{b^2-4ac}}{2a}";
+            panelL.CodeText = "\\frac{-b\\sqrt{b^{2}-4ac}}{2a}";
 
         }
 
         private void TranslateProcedure()
         {
+
             string python = "python.exe";
             string myPythonApp = "konwertuj.py";
             ProcessStartInfo myProcessStartInfo = new ProcessStartInfo(python);
