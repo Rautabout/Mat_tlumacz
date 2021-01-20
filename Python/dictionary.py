@@ -1,29 +1,29 @@
-symbols = {"+": ["+", "+", "+", "0"],  # <mo>
-           "-": ["-", "-", "-", "0"],
-           "*": ["\\bullet", "\cdot", "*", "1"],
-           "^": ["^", "^", "^", "3"],  # <msup>
-           "_": ["_", "_", "^", "3"],  # <msub>
-           "/": ["/", "\\frac", "frac", "2"],  # <mfrac>
-           "sqrt": ["\sqrt", "\sqrt", "sqrt", "4"],  # <msqrt>
-           "int": ["\int", "\int", "&int;", "4"],  # <mo>
-           "alpha": ["\\alpha", "\\alpha", "&alpha;", "5"],
-           "beta": ["\\beta", "\\beta", "&beta;", "5"],
-           "gamma": ["\gamma", "\gamma", "&gamma;", "5"],
-           "delta": ["\delta", "\delta", "&delta;", "5"],
-           "sin": ["sin", "\sin", "sin", "4"],  # <mi>
-           "cos": ["cos", "\cos", "cos", "4"],
-           "tan": ["tan", "\\tan", "tan", "4"],
-           "cot": ["cot", "\cot", "cot", "4"],
-           "<=": ["\le", "\leq", "<=", "0"],  # <mo>
-           ">=": ["\ge", "\geq", ">=", "0"],
-           "<": ["<", "<", "><", "0"],
-           ">": [">", ">", ">>", "0"],
-           "in": ["\in", "\in", ">in", "0"],  # <mi>
-           "notin": ["\\notelement", "\\notin", ">notin", "0"],
-           "and": ["\\vedge", "\land", ">and", "0"],
-           "or": ["\\vee", "\lor", ">or", "0"],
-           "pi": ["\\pi", "\\pi", "pi", "5"],
-           "e": ["exp(1)", "e", "e", "5"],
+symbols = {"+": ["+", "+", "+", "0","<mo>+</mo>"],  # <mo>
+           "-": ["-", "-", "-", "0","<mo>-</mo>"],
+           "*": ["\\bullet", "\cdot", "*", "1","<mo>*</mo>"],
+           "^": ["^", "^", "^", "3","<msup>"],  # <msup>
+           "_": ["_", "_", "^", "3","<msub>"],  # <msub>
+           "/": ["/", "\\frac", "frac", "2","<mfrac>"],  # <mfrac>
+           "sqrt": ["\sqrt", "\sqrt", "sqrt", "4","<msqrt>"],  # <msqrt>
+           "int": ["\int", "\int", "&int;", "4","<mo>&int;</mo>"],  # <mo>
+           "alpha": ["\\alpha", "\\alpha", "&alpha;", "5","<mo>&alpha;</mo>"],
+           "beta": ["\\beta", "\\beta", "&beta;", "5","<mo>&beta;</mo>"],
+           "gamma": ["\gamma", "\gamma", "&gamma;", "5","<mo>&gamma;</mo>"],
+           "delta": ["\delta", "\delta", "&delta;", "5","<mo>&delta;</mo>"],
+           "sin": ["sin", "\sin", "sin", "4","<mi>sin</mi>"],  # <mi>
+           "cos": ["cos", "\cos", "cos", "4","<mi>cos</mi>"],
+           "tan": ["tan", "\\tan", "tan", "4","<mi>tan</mi>"],
+           "cot": ["cot", "\cot", "cot", "4","<mi>cot</mi>"],
+           "<=": ["\le", "\leq", "<=", "0","<mo><=></mo>"],  # <mo>
+           ">=": ["\ge", "\geq", ">=", "0","<mo>>=</mo>"],
+           "<": ["<", "<", "><", "0","<mo><</mo>"],
+           ">": [">", ">", ">>", "0","<mo>></mo>"],
+           "in": ["\in", "\in", ">in", "0","<mi>in</mi>"],  # <mi>
+           "notin": ["\\notelement", "\\notin", ">notin", "0","<mi>notin</mi>"],
+           "and": ["\\vedge", "\land", ">and", "0","<mi>and</mi>"],
+           "or": ["\\vee", "\lor", ">or", "0","<mi>or</mi>"],
+           "pi": ["\\pi", "\\pi", "pi", "5","<mi>pi</mi>"],
+           "e": ["exp(1)", "e", "e", "5","<mi>e</mi>"],
 
            }
 

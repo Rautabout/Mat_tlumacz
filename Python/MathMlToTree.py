@@ -114,9 +114,10 @@ def swapPlacesOfSub(inputString):
 
 def stripUnnecessary(inputString):
     inputString = inputString.lstrip('<math>\n')
-    inputString = inputString.replace("<mrow>\n", "")
     inputString = inputString.replace(" ", "")
     inputString = inputString.replace("\n", "")
+    inputString = inputString.replace('<mrow>','{')
+    inputString = inputString.replace('</mrow>','}')
     inputString = changeClosingOfSpecial(inputString, dic.mathMlEndSymbolsWithNesting)
     inputString = re.sub('</[^>]+>', '', inputString)
     inputString = swapPlacesOfSup(inputString)
@@ -127,6 +128,7 @@ def stripUnnecessary(inputString):
     inputString = inputString.replace("<mn>", "")
     inputString = inputString.replace('<mfrac','mfrac')
     inputString = inputString.replace('<msqrt','msqrt')
+
 
     return inputString
 
@@ -330,51 +332,91 @@ def mathMlToTree(inputString):
     inputString = inputString.replace(')','}')
     inputString = inputString.replace('mfrac','/')
     inputString = inputString.replace('msqrt','sqrt')
+    print(inputString)
     inputString = inputString.replace('&','')
     inputString = inputString.replace(';','')
     print(inputString)
     tree = findNextSubtree(inputString,maxPriority,dictionary,tree,'root','')
     tree.show()
 
+    return tree
     # findNestedSubStrings(inputString)
 
 #-b\cdot\sqrt{-b^{2^{3}}-4\cdota\cdotc}+(-5+a)\cdotb+3\cdot\sin(\alpha-5\cdote)
 #-b*<msqrt{-b^{2^{3}}-4*a*c}+(-5+a)*b+3*sin(&alpha;-5*e)
 
-input = """<math>
-    <mo>-</mo>
-    <mi>b</mi>
-    <msqrt>
-        <mo>-</mo>
-        <msup>
-            <mi>b</mi>
-            <msup>
-                <mn>2</mn>
-                <mn>3</mn>
-            </msup>
-        </msup>
-        <mo>-</mo>
-        <mn>4</mn>
-        <mi>a</mi>
-        <mi>c</mi>
-    </msqrt>
-    <mo>+</mo>
-    <mo>(</mo>
-    <mo>-</mo>
-    <mn>5</mn>
-    <mo>+</mo>
-    <mi>a</mi>
-    <mo>)</mo>
-    <mi>b</mi>
-    <mo>+</mo>
-    <mn>3</mn>
-    <mi>sin</mi>
-    <mo>(</mo>
-    <mo>&alpha;</mo>
-    <mo>-</mo>
-    <mn>5</mn>
-    <mi>e</mi>
-    <mo>)</mo>
-</math>"""
+# input = """<math>
+#     <mo>-</mo>
+#     <mi>b</mi>
+#     <msqrt>
+#         <mo>-</mo>
+#         <msup>
+#             <mi>b</mi>
+#             <msup>
+#                 <mn>2</mn>
+#                 <mn>3</mn>
+#             </msup>
+#         </msup>
+#         <mo>-</mo>
+#         <mn>4</mn>
+#         <mi>a</mi>
+#         <mi>c</mi>
+#     </msqrt>
+#     <mo>+</mo>
+#     <mo>(</mo>
+#     <mo>-</mo>
+#     <mn>5</mn>
+#     <mo>+</mo>
+#     <mi>a</mi>
+#     <mo>)</mo>
+#     <mi>b</mi>
+#     <mo>+</mo>
+#     <mn>3</mn>
+#     <mi>sin</mi>
+#     <mo>(</mo>
+#     <mo>&alpha;</mo>
+#     <mo>-</mo>
+#     <mn>5</mn>
+#     <mi>e</mi>
+#     <mo>)</mo>
+# </math>"""
 
-mathMlToTree(input)
+# input="""
+# <math>
+#     <msqrt>
+#         <mo>-</mo>
+#         <msup>
+#             <mi>b</mi>
+#             <mn>2</mn>
+#         </msup>
+#         <mo>-</mo>
+#         <mn>4</mn>
+#         <mi>a</mi>
+#         <mi>c</mi>
+#     </msqrt>
+#     <mo>+</mo>
+#     <mn>5</mn>
+#     <mi>a</mi>
+#     <mi>b</mi>
+# </math>
+# """
+
+# input="""
+# <math>
+#     <mfrac>
+#         <mrow>
+#             <mi>x</mo>
+#             <mo>+</mo>
+#             <mi>y</mi>
+#         </mrow>
+#         <mrow>
+#             <mn>12</mn>
+#             <mo>-</mo>
+#             <mn>3</mn>
+#         </mrow>
+#     </mfrac>
+# </math>
+#
+# """
+
+# mathMlToTree(input)
