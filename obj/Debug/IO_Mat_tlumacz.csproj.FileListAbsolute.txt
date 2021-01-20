@@ -1,0 +1,83 @@
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz\bin\Debug\IO_Mat_tlumacz.exe.config
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz\bin\Debug\IO_Mat_tlumacz.exe
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz\bin\Debug\IO_Mat_tlumacz.pdb
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz\obj\Debug\IO_Mat_tlumacz.csprojAssemblyReference.cache
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz\obj\Debug\CodeView.g.cs
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz\obj\Debug\MainWindow.g.cs
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz\obj\Debug\App.g.cs
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz\obj\Debug\IO_Mat_tlumacz_MarkupCompile.cache
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz\obj\Debug\IO_Mat_tlumacz_MarkupCompile.lref
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz\obj\Debug\CodeView.baml
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz\obj\Debug\MainWindow.baml
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz\obj\Debug\IO_Mat_tlumacz.g.resources
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz\obj\Debug\IO_Mat_tlumacz.Properties.Resources.resources
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz\obj\Debug\IO_Mat_tlumacz.csproj.GenerateResource.cache
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz\obj\Debug\IO_Mat_tlumacz.csproj.CoreCompileInputs.cache
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz\obj\Debug\IO_Mat_tlumacz.exe
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz\obj\Debug\IO_Mat_tlumacz.pdb
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz old\obj\Debug\IO_Mat_tlumacz.csprojAssemblyReference.cache
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz old\obj\Debug\CodeView.g.cs
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz old\obj\Debug\MainWindow.g.cs
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz old\obj\Debug\App.g.cs
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz old\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz old\obj\Debug\IO_Mat_tlumacz_MarkupCompile.cache
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz old\obj\Debug\IO_Mat_tlumacz_MarkupCompile.lref
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz old\obj\Debug\IO_Mat_tlumacz.exe
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz old\obj\Debug\IO_Mat_tlumacz.pdb
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz old\bin\Debug\IO_Mat_tlumacz.exe.config
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz old\bin\Debug\IO_Mat_tlumacz.exe
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz old\bin\Debug\IO_Mat_tlumacz.pdb
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz old\obj\Debug\CodeView.baml
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz old\obj\Debug\MainWindow.baml
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz old\obj\Debug\IO_Mat_tlumacz.g.resources
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz old\obj\Debug\IO_Mat_tlumacz.Properties.Resources.resources
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz old\obj\Debug\IO_Mat_tlumacz.csproj.GenerateResource.cache
+C:\Users\Agent\Desktop\Szkola\Projekty C#\IO_Mat_tlumacz old\obj\Debug\IO_Mat_tlumacz.csproj.CoreCompileInputs.cache
+<<<<<<< HEAD
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz.csprojAssemblyReference.cache
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\CodeView.g.cs
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\MainWindow.g.cs
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\App.g.cs
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz_MarkupCompile.cache
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz_MarkupCompile.lref
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz.exe
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz.pdb
+=======
+C:\Users\Karolina\Source\Repos\Mat_tlumacz\obj\Debug\IO_Mat_tlumacz.csprojAssemblyReference.cache
+C:\Users\Karolina\Source\Repos\Mat_tlumacz\obj\Debug\CodeView.g.cs
+C:\Users\Karolina\Source\Repos\Mat_tlumacz\obj\Debug\MainWindow.g.cs
+C:\Users\Karolina\Source\Repos\Mat_tlumacz\obj\Debug\App.g.cs
+C:\Users\Karolina\Source\Repos\Mat_tlumacz\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\Karolina\Source\Repos\Mat_tlumacz\obj\Debug\IO_Mat_tlumacz_MarkupCompile.cache
+C:\Users\Karolina\Source\Repos\Mat_tlumacz\obj\Debug\IO_Mat_tlumacz_MarkupCompile.lref
+C:\Users\Karolina\Source\Repos\Mat_tlumacz\obj\Debug\IO_Mat_tlumacz.exe
+C:\Users\Karolina\Source\Repos\Mat_tlumacz\obj\Debug\IO_Mat_tlumacz.pdb
+>>>>>>> Karolina
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\IO_Mat_tlumacz.exe.config
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\IO_Mat_tlumacz.exe
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\IO_Mat_tlumacz.pdb
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\IronPython.dll
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\IronPython.Modules.dll
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\IronPython.SQLite.dll
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\IronPython.Wpf.dll
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\Microsoft.Dynamic.dll
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\Microsoft.Scripting.dll
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\Microsoft.Scripting.Metadata.dll
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\IronPython.xml
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\IronPython.Modules.xml
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\IronPython.SQLite.xml
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\IronPython.Wpf.xml
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\Microsoft.Dynamic.xml
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\Microsoft.Scripting.xml
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\bin\Debug\Microsoft.Scripting.Metadata.xml
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz_Content.g.cs
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\CodeView.baml
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\MainWindow.baml
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz.g.resources
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz.Properties.labels_ENG.resources
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz.Properties.labels_PL.resources
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz.csproj.GenerateResource.cache
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz.csproj.CoreCompileInputs.cache
+D:\Informatyka\Inżynieria Oprogramowania\Mat-Tlumacz\obj\Debug\IO_Mat_tlumacz.csproj.CopyComplete

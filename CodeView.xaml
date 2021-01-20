@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="IO_Mat_tlumacz.CodeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:IO_Mat_tlumacz"
+             x:Name="Root"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="48"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="6*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox x:Name="LanguagePick" x:FieldModifier="private"
+                Grid.Column="0" HorizontalAlignment="Stretch" Margin="8,8,8,8" 
+                ItemsSource   ="{Binding ElementName=Root, Path=LanguageList}" 
+                SelectedIndex ="{Binding ElementName=Root, Path=SelectedLanguage}"/>
+            <Button Grid.Column="1" Content="Code" Margin="8,8,8,8"/>
+            <Button Grid.Column="2" Content="Draw" Margin="8,8,8,8"/>
+        </Grid>
+
+        <TextBox x:Name="TextInput" x:FieldModifier="private"
+                 Text="{Binding ElementName=Root, Path=CodeText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 Grid.Row="1"
+                 HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="8,8,8,8"
+                 FontSize="16"
+                 Focusable="True"
+                 TextWrapping="Wrap"
+            />
+    </Grid>
+</UserControl>
