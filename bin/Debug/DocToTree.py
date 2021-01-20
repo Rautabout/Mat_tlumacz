@@ -4,7 +4,7 @@ from treelib import Node, Tree
 
 def prepareText(input):
     inputString = input.replace("\n","")
-    inputString =" " + inputString + "   "
+    inputString =" " + inputString + " "
     tempString = inputString
     testString = ""
     endingIndex=0
@@ -345,10 +345,11 @@ def findNextSubtree(inputString,maxPriority,dictionary,tree, rootName,parent):
 
     else:    
         root = findRoot(findProperFragments(inputString),inputString,maxPriority,dictionary)    
-        left = findChilds(inputString,root)[0]
-        right = findChilds(inputString,root)[1]    
+          
         
         if root != None:
+            left = findChilds(inputString,root)[0]
+            right = findChilds(inputString,root)[1]  
             if parent== '':
                 tree.create_node(root[1],rootName)
             else:

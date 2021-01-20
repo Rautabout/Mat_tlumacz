@@ -1,4 +1,4 @@
-import dictionary as dic 
+﻿import dictionary as dic 
 from treelib import Node, Tree
 import DocToTree as DTT
 
@@ -19,9 +19,9 @@ def tagFromParentAndLeftChild(parentTag, leftTag):
         leftTag = dic.symbols[leftTag][0]
 
     if(parentTag=='sqrt'):
-        return dic.symbols[parentTag][0] + "(" + leftTag + " )"
+        return dic.symbols[parentTag][0] + "(" + leftTag + ")"
     elif(parentTag=='('):
-        return "(" + leftTag + " )"
+        return "(" + leftTag + ")"
     else:
         return dic.symbols[parentTag][0] + leftTag
 
@@ -37,9 +37,9 @@ def tagFromParentAndChildren(parentTag, leftTag, rightTag):
     if parentTag in dic.teXChildsWithoutBrackets:
         return leftTag + " " + dic.symbols[parentTag][0] + " " + rightTag
     elif parentTag in dic.teXChildsWithBrackets:
-        return  "(" + leftTag + ")" + dic.symbols[parentTag][0] + "(" + rightTag + " )"
+        return  "(" + leftTag + ")" + dic.symbols[parentTag][0] + "(" + rightTag + ")"
     elif parentTag in dic.teXChildsWithRightBracket:
-        return   leftTag  + dic.symbols[parentTag][0] + "(" + rightTag + " )"
+        return   leftTag  + dic.symbols[parentTag][0] + "(" + rightTag + ")"
 
 
 def treeToDoc(tree):

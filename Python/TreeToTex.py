@@ -1,6 +1,7 @@
 import TexToTree
 import dictionary as dic
 import treelib
+import DocToTree
 
 
 
@@ -91,7 +92,7 @@ def treeToTex(tree):
 
 
 # input = '-b\sqrt{-b^{2^{3}}-4ac}+(-5+a)b+3\sin(\\alpha-5e)' 
-
-# tree = TexToTree.textToTree(input)
-# tree.show()
-# print(treeToTex(tree))
+input = '2 + 3 - 4'
+tree = DocToTree.docToTree(input)
+tree.show()
+print(treeToTex(tree))
