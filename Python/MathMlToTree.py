@@ -229,10 +229,8 @@ def findEndIndexOfActualCurlyBracket(openIndex, inputString):
 
     for i in range(openIndex + 1, len(inputString) + 1):
         if inputString[i] == '{':
-            print('otwieram')
             openBrackets += 1
         if inputString[i] == '}':
-            print('zamykam')
             openBrackets -= 1
         if openBrackets == 0:
             return i
@@ -324,20 +322,15 @@ def mathMlToTree(inputString):
     dictionary = dic.symbols
     maxPriority = dic.findMaxPriority(dictionary)
     inputString = stripUnnecessary(inputString)
-    print(inputString)
     inputString = addMultiplySign(inputString, dic.symbols, dic.mathMlSymbolsWithUndercoverMultiplySign)
-    print(inputString)
     inputString = modifyNegativePhrase(inputString)
     inputString = inputString.replace("(",'{')
     inputString = inputString.replace(')','}')
     inputString = inputString.replace('mfrac','/')
     inputString = inputString.replace('msqrt','sqrt')
-    print(inputString)
     inputString = inputString.replace('&','')
     inputString = inputString.replace(';','')
-    print(inputString)
     tree = findNextSubtree(inputString,maxPriority,dictionary,tree,'root','')
-    tree.show()
 
     return tree
     # findNestedSubStrings(inputString)
