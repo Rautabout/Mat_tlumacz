@@ -70,6 +70,7 @@ def removeClosingSpecial(inputString,keyValue):
 
 
 def checkIfMrowAfterSpecial(inputString,keyValue):
+    print(inputString)
     output=''
     for key in keyValue:
         index = 0
@@ -95,7 +96,7 @@ def checkIfMrowAfterSpecial(inputString,keyValue):
                     output = inputString[:indexOpeningAfterSpecial] + "<mrow>" + inputString[indexOpeningAfterSpecial:(indexOfKeyClosing - 1)] + "</mrow>" + inputString[(indexOfKeyClosing - 1):]
                     inputString = output
                     index += 1
-
+    print(output)
     return output
 
 
@@ -304,16 +305,31 @@ def findProperFragments(inputString):
 
     return tableOfProperIndexes
 
+def findStartBracket(inputString, indexofEndBracket):
+    sumOfBrackets = 1
+    print('startbracket')
+    print(indexofEndBracket)
+    for a in range(indexofEndBracket-2,-1,-1):
+        print('i:' + str(a))
+        print(inputString[a])
+        # print()
+        if inputString[a]=='}':
+            sumOfBrackets+=1
+        elif inputString[a] == '{':
+            sumOfBrackets-=1
+            if sumOfBrackets==0:
+                return a
+
+
+
 
 def findEndIndexOfActualCurlyBracket(openIndex, inputString):
     openBrackets = 1
 
     for i in range(openIndex + 1, len(inputString) + 1):
         if inputString[i] == '{':
-            print('otwieram')
             openBrackets += 1
         if inputString[i] == '}':
-            print('zamykam')
             openBrackets -= 1
         if openBrackets == 0:
             return i
@@ -355,8 +371,14 @@ def findChilds(inputString, root):
         left = inputString[root[0] + 1 + len(root[2]):endOfFirst]
         right = inputString[endOfFirst + 2:endOfSecond]
     if root[1] in dic.mathMlChildWithRightBracket:
-        left = inputString[:root[0]]
-        right = inputString[root[0] + 4:-1]
+        if inputString[root[0]-1]=='}':
+            print(inputString)
+            start = findStartBracket(inputString,root[0])
+            
+            inputString=inputString[:start]+inputString[start+1:]
+            print(inputString)
+        left = inputString[:root[0]-2]
+        right = inputString[root[0] + 3:-1]
     if root[1] in dic.mathMlSymbolsWithBrackets:
         left = inputString[root[0] + len(root[2]) + 1 :-1]
         right = None
