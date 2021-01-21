@@ -357,7 +357,7 @@ def findChilds(inputString, root):
         endOfBracket = findEndIndexOfActualCurlyBracket
         left = inputString[:root[0]]
         right = inputString[root[0] + 2:-1]
-    if root[1] in mathMlSymbolsWithBrackets:
+    if root[1] in dic.mathMlSymbolsWithBrackets:
         left = inputString[root[0] + len(root[2]) + 1 :-1]
         right = None
     if root[1] in mathMlFunctions:
