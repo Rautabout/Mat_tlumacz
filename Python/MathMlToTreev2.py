@@ -70,7 +70,7 @@ def removeClosingSpecial(inputString,keyValue):
 
 
 def checkIfMrowAfterSpecial(inputString,keyValue):
-    print(inputString)
+    # print(inputString)
     output=''
     for key in keyValue:
         index = 0
@@ -96,7 +96,7 @@ def checkIfMrowAfterSpecial(inputString,keyValue):
                     output = inputString[:indexOpeningAfterSpecial] + "<mrow>" + inputString[indexOpeningAfterSpecial:(indexOfKeyClosing - 1)] + "</mrow>" + inputString[(indexOfKeyClosing - 1):]
                     inputString = output
                     index += 1
-    print(output)
+    # print(output)
     return output
 
 
@@ -236,7 +236,7 @@ def prepareString(inputString):
 
 
 
-    print(inputString)
+    # print(inputString)
 
 
 
@@ -256,7 +256,7 @@ def mathMlToTree(inputString):
         name = i.identifier
         if name.endswith('.left'):
             parent = name[0:-5]
-            print(parent)
+            # print(parent)
         elif name.endswith('.right'):
             parent=name[0:-6]
         i.tag = i.tag.replace('[minus]','-')
@@ -322,11 +322,11 @@ def findProperFragments(inputString):
 
 def findStartBracket(inputString, indexofEndBracket):
     sumOfBrackets = 1
-    print('startbracket')
-    print(indexofEndBracket)
+    # print('startbracket')
+    # print(indexofEndBracket)
     for a in range(indexofEndBracket-2,-1,-1):
-        print('i:' + str(a))
-        print(inputString[a])
+        # print('i:' + str(a))
+        # print(inputString[a])
         # print()
         if inputString[a]=='}':
             sumOfBrackets+=1
