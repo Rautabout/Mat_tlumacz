@@ -1,7 +1,7 @@
 symbols = {"+": ["+", "+", "[+]", "0","<mo>+</mo>"],  # <mo>
            "-": ["-", "-", "[-]", "0","<mo>-</mo>"],
            "*": ["\\bullet", "\cdot", "[*]", "1","<mo>*</mo>"],
-           "^": ["^", "^", "[msup]", "3","<msup>"],  # <msup>
+           "^": ["^", "^", "[^]", "3","<msup>"],  # <msup>
            "_": ["_", "_", "[msub]", "3","<msub>"],  # <msub>
            "/": ["/", "\\frac", "[mfrac]", "2","<mfrac>"],  # <mfrac>
            "sqrt": ["\sqrt", "\sqrt", "[msqrt]", "4","<msqrt>"],  # <msqrt>
@@ -51,7 +51,7 @@ mathMlChildsWithoutBrackets = ['+', '-', '*', '<=', '>=', '<', '>','in', 'notin'
 mathMlChildWithRightBracket=["^","_"]
 mathMlFunctions=["sin", "cos", "tan", "cot"]
 mathMlJustSymbols=["alpha", "beta", "gamma", "delta", "pi", "e"]
-mathMlSymbolsWithBrackets=["[msqrt]","int"]
+mathMlSymbolsWithBrackets=["sqrt","int"]
 mathMlSymbolsWithBracket=["/"]
 
 

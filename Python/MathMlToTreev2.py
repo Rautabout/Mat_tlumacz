@@ -214,6 +214,8 @@ def prepareString(inputString):
     inputString = inputString.replace('<msqrt>', '[msqrt]')
     inputString = re.sub('</[^>]+>', ']', inputString)
     inputString = re.sub('<[^>]+>', '[', inputString)
+    inputString = inputString.replace('msup', '^')
+    inputString = inputString.replace('msub', '_')
     inputString=addMultiplySign(inputString,dic.symbols,mathMlSymbolsWithUndercoverMultiplySign)
     inputString=modifyNegativePhrase(inputString)
     inputString = inputString.replace("[(]",'{')
@@ -224,8 +226,7 @@ def prepareString(inputString):
     # inputString=inputString.replace(']','')
     # inputString=inputString.replace('minus','[minus]')
     # inputString=inputString.replace('[msqrt]','msqrt')
-    inputString = inputString.replace('msup', '^')
-    inputString = inputString.replace('msub', '_')
+    
 
 
     # print(inputString)
@@ -340,7 +341,7 @@ mathMlJustSymbols=["alpha", "beta", "gamma", "delta", "pi", "e"]
 mathMlFunctions=["sin", "cos", "tan", "cot"]
 mathMlChildsWithoutBrackets=['+', '-', '*', '<=', '>=', '<', '>','in', 'notin', 'and', 'or']
 mathMlChildWithRightBracket=["^","_","/"]
-mathMlSymbolsWithBrackets=["msqrt"]
+mathMlSymbolsWithBrackets=["[msqrt]"]
 
 
 
@@ -354,9 +355,8 @@ def findChilds(inputString, root):
         left = inputString[root[0] + 1 + len(root[2]):endOfFirst]
         right = inputString[endOfFirst + 2:endOfSecond]
     if root[1] in dic.mathMlChildWithRightBracket:
-        endOfBracket = findEndIndexOfActualCurlyBracket
         left = inputString[:root[0]]
-        right = inputString[root[0] + 2:-1]
+        right = inputString[root[0] + 4:-1]
     if root[1] in dic.mathMlSymbolsWithBrackets:
         left = inputString[root[0] + len(root[2]) + 1 :-1]
         right = None

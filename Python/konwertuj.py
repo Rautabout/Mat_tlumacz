@@ -5,6 +5,30 @@ import TreeToTex
 import MathMlToTree
 import TreeToMathMl
 import sys
+import dictionary as dic
+
+
+def checkInputString(inputString,indexOfValueInDic):
+    isThereAnythingSpecial = False
+    isThereSomethingNotIncludedInDic = False
+    tempString = inputString
+    
+    for i in dic.symbols.values():
+        if inputString.find(i[indexOfValueInDic])!=-1:
+            isThereAnythingSpecial = True
+        tempString = tempString.replace(i[indexOfValueInDic],'')
+    if indexOfValueInDic == 0 or indexOfValueInDic==1:
+        if tempString.find('\\') != -1:
+            isThereSomethingNotIncludedInDic = True
+    elif indexOfValueInDic == 4:
+        if tempString.find('</') != -1:
+            isThereSomethingNotIncludedInDic = True
+    
+    if (not isThereSomethingNotIncludedInDic) and (isThereAnythingSpecial):
+        return True
+    else:
+        return False
+    
 
 
 def convert(inL,outL,string):
@@ -16,8 +40,3 @@ def convert(inL,outL,string):
             
     return languages[outL][1](languages[inL][0](string))
 
-# inL = sys.argv[1]
-# outL = sys.argv[2]
-# string =sys.argv[3]
-# result = convert(inL,outL,string)
-# print(result)
