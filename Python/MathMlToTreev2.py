@@ -261,7 +261,8 @@ def mathMlToTree(inputString):
             parent=name[0:-6]
         i.tag = i.tag.replace('[minus]','-')
         i.tag = i.tag.replace('[','')
-        tag = i.tag.replace(']','')
+        i.tag = i.tag.replace(']','')
+        tag = i.tag.replace('-','[minus]')
         tree.remove_node(name)
         tree.create_node(tag,name,parent)
     tree.show()

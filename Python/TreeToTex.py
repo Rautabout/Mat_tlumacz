@@ -84,14 +84,14 @@ def treeToTex(tree):
             break
 
 
-    return tree.get_node("root").tag.replace('[minus]', '-')
+    return tree.get_node("root").tag.replace('[minus]', '-').replace('\cdot','\cdot ')
 
 
     
 
 
-# input = '-b\sqrt{-b^{2^{3}}-4ac}+(-5+a)b+3\sin(\\alpha-5e)' 
+input = '-b\sqrt{-b^{2^{3}}-4ac}+(-5+a)b+3\sin(\\alpha-5e)' 
 
-# tree = TexToTree.textToTree(input)
-# tree.show()
-# print(treeToTex(tree))
+tree = TexToTree.texToTree(input)
+tree.show()
+print(treeToTex(tree))
