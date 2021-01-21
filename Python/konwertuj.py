@@ -21,6 +21,8 @@ def checkInputString(inputString,indexOfValueInDic):
         if tempString.find('\\') != -1:
             isThereSomethingNotIncludedInDic = True
     elif indexOfValueInDic == 4:
+        tempString = tempString.replace('</mn>','')
+        tempString = tempString.replace('</mi>','')
         if tempString.find('</') != -1:
             isThereSomethingNotIncludedInDic = True
     

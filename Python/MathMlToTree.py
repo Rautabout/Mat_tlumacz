@@ -272,6 +272,7 @@ def mathMlToTree(inputString):
         tree.remove_node(name)
         tree.create_node(tag, name, parent)
     tree.show()
+    return tree
 
 
 def isWholeInBracket(inputString):
