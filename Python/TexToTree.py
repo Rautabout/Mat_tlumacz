@@ -216,7 +216,7 @@ def texToTree(inputString):
         inputString = inputString.replace(dic.symbols[i][1],i)
 
     tree = findNextSubtree(inputString,maxPriority,dictionary,tree,'root','')
-  
+    
     return tree
 
 

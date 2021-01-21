@@ -250,9 +250,21 @@ def mathMlToTree(inputString):
     maxPriority = dic.findMaxPriority(dictionary)
     inputString=prepareString(inputString)
     tree = findNextSubtree(inputString,maxPriority,dictionary,tree,'root','')
+    
+    leaves = tree.leaves()
+    for i in leaves:
+        name = i.identifier
+        if name.endswith('.left'):
+            parent = name[0:-5]
+            print(parent)
+        elif name.endswith('.right'):
+            parent=name[0:-6]
+        i.tag = i.tag.replace('[minus]','-')
+        i.tag = i.tag.replace('[','')
+        tag = i.tag.replace(']','')
+        tree.remove_node(name)
+        tree.create_node(tag,name,parent)
     tree.show()
-    #print(inputString)
-
 
 
 
@@ -372,11 +384,8 @@ def findChilds(inputString, root):
         right = inputString[endOfFirst + 2:endOfSecond]
     if root[1] in dic.mathMlChildWithRightBracket:
         if inputString[root[0]-1]=='}':
-            print(inputString)
             start = findStartBracket(inputString,root[0])
-            
             inputString=inputString[:start]+inputString[start+1:]
-            print(inputString)
         left = inputString[:root[0]-2]
         right = inputString[root[0] + 3:-1]
     if root[1] in dic.mathMlSymbolsWithBrackets:
