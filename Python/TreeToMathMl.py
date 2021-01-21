@@ -27,7 +27,7 @@ mathMLSymbolsWithNoBrackets=['+', '-', '*', '<=', '>=', '<', '>','in', 'notin', 
 mathMLWithBrackets = ["mfrac"]
 mathMlChildWithBracket="sqrt"
 mathMlFunctions=["sin", "cos", "tan", "cot"]
-mathMlChildWithRBracket = ["^", "_"]
+mathMlChildWithRBracket = ["^", "_","/"]
 
 
 def mergeString(inputString, root, left, right=None):
