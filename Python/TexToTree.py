@@ -1,6 +1,7 @@
 import dictionary as dic 
 from treelib import Node, Tree
 
+
 def isWholeInBracket(input):
     openBrackets=1
     if input[0]=='{' and input[len(input)-1]=='}':

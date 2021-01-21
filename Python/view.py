@@ -122,12 +122,16 @@ class MainWindow(Ui_Dialog):
     def _clicked_ButtonConvert(self):
         inpt=''
         outpt =''
+        indexInDic=0
         if self.MathMLFrom.isChecked():
             inpt='mathml'
+            indexInDic = 4
         elif self.DocFrom.isChecked():
             inpt='doc'
+            indexInDic = 0
         elif self.TeXFrom.isChecked():
             inpt='tex'
+            indexInDic = 1
         if self.MathMLTo.isChecked():
             outpt='mathml'
         elif self.DocTo.isChecked():
@@ -136,7 +140,11 @@ class MainWindow(Ui_Dialog):
             outpt='tex'
         if inpt !='' and outpt !='':
             try:
-                self.output.setPlainText(konwertuj.convert(inpt,outpt,self.input.toPlainText()))
+                if konwertuj.checkInputString(self.input.toPlainText(),indexInDic):
+                    self.output.setPlainText(konwertuj.convert(inpt,outpt,self.input.toPlainText()))
+                else:
+                    self.output.setPlainText('Przepraszam, ale wpisano coś, czego nie rozumiem lub nie występuje tu żaden matematyczny symbol.')
+
             except:
                 self.output.setPlainText('Przepraszam, ale wpisano coś, czego nie rozumiem.')
         else:
