@@ -3,7 +3,7 @@ import TreeToDoc
 import TexToTree
 import TreeToTex
 import MathMlToTree
-import TreeToMathml
+import TreeToMathMl
 import sys
 
 
@@ -12,6 +12,6 @@ def convert(inL,outL,string):
 
     languages['tex'] = [TexToTree.texToTree, TreeToTex.treeToTex]
     languages['doc'] = [DocToTree.docToTree, TreeToDoc.treeToDoc]
-    languages['mathml']=[MathMlToTree.mathMlToTree, TreeToMathml.treeToMathMl]
+    languages['mathml']=[MathMlToTree.mathMlToTree, TreeToMathMl.treeToMathMl]
             
     return languages[outL][1](languages[inL][0](string))

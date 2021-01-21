@@ -19,9 +19,9 @@ def tagFromParentAndLeftChild(parentTag, leftTag):
         leftTag = dic.symbols[leftTag][0]
 
     if(parentTag=='sqrt'):
-        return dic.symbols[parentTag][0] + "(" + leftTag + ")"
+        return dic.symbols[parentTag][0] + "(" + leftTag + " )"
     elif(parentTag=='('):
-        return "(" + leftTag + ")"
+        return "(" + leftTag + " )"
     else:
         return dic.symbols[parentTag][0] + leftTag
 
@@ -37,9 +37,9 @@ def tagFromParentAndChildren(parentTag, leftTag, rightTag):
     if parentTag in dic.teXChildsWithoutBrackets:
         return leftTag + " " + dic.symbols[parentTag][0] + " " + rightTag
     elif parentTag in dic.teXChildsWithBrackets:
-        return  "(" + leftTag + ")" + dic.symbols[parentTag][0] + "(" + rightTag + ")"
+        return  "(" + leftTag + " )" + dic.symbols[parentTag][0] + "(" + rightTag + " )"
     elif parentTag in dic.teXChildsWithRightBracket:
-        return   leftTag  + dic.symbols[parentTag][0] + "(" + rightTag + ")"
+        return   leftTag  + dic.symbols[parentTag][0] + "(" + rightTag + " )"
 
 
 def treeToDoc(tree):
@@ -94,10 +94,10 @@ def treeToDoc(tree):
     return tree.get_node("root").tag.replace('[minus]', '-')
         
         
-input = '-b\sqrt(-b^(2^(3)) - 4ac) + (-5+a)b + 3 \sin(\\alpha-5exp(1))'
+#input = '-b\sqrt(-b^(2^(3)) - 4ac) + (-5+a)b + 3 \sin(\\alpha-5exp(1))'
 #input = '\sqrt(b^2 - 4ac) + 5ab' 
 #input ='(x+y)/(12-3)'
 
 
-tree = DTT.docToTree(input)
-print(treeToDoc(tree))
+#tree = DTT.docToTree(input)
+#print(treeToDoc(tree))
