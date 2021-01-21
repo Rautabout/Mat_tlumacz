@@ -51,7 +51,7 @@ mathMlChildsWithoutBrackets = ['+', '-', '*', '<=', '>=', '<', '>','in', 'notin'
 mathMlChildWithRightBracket=["^","_"]
 mathMlFunctions=["sin", "cos", "tan", "cot"]
 mathMlJustSymbols=["alpha", "beta", "gamma", "delta", "pi", "e"]
-mathMlSymbolsWithBrackets=["sqrt","int"]
+mathMlSymbolsWithBrackets=["[msqrt]","int"]
 mathMlSymbolsWithBracket=["/"]
 
 
