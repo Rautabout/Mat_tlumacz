@@ -23,7 +23,7 @@ def checkIfNumber(input):
         return False
 
 mathMLJustSymbols=["alpha", "beta", "gamma", "delta", "pi", "e"]
-mathMLSymbolsWithNoBrackets=['+', '-', '*', '<=', '>=', '<', '>','in', 'notin', 'and', 'or']
+mathMLSymbolsWithNoBrackets=['+', '-', '*', '<=', '>=','=', '<', '>','in', 'notin', 'and', 'or']
 mathMLWithBrackets = ["mfrac"]
 mathMlChildWithBracket="sqrt"
 mathMlFunctions=["sin", "cos", "tan", "cot"]

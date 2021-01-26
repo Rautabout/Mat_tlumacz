@@ -373,7 +373,7 @@ def findRoot(tableofIndexes, input, maxPriority, dictionary):
 
 mathMlJustSymbols = ["alpha", "beta", "gamma", "delta", "pi", "e"]
 mathMlFunctions = ["sin", "cos", "tan", "cot"]
-mathMlChildsWithoutBrackets = ['+', '-', '*', '<=', '>=', '<', '>', 'in', 'notin', 'and', 'or']
+mathMlChildsWithoutBrackets = ['+', '-', '*', '<=', '>=','=' '<', '>', 'in', 'notin', 'and', 'or']
 mathMlChildWithRightBracket = ["^", "_", "/"]
 mathMlSymbolsWithBrackets = ["[msqrt]"]
 
